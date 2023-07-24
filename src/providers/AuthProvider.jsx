@@ -49,7 +49,6 @@ const AuthProvider = ({ children }) => {
 
       // get and set token
     });
-
     return () => {
       unsubscribe();
     };
