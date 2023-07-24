@@ -10,8 +10,10 @@ const Footer = () => {
   return (
     <footer className="bg-[#1E202D] text-white py-10">
       <Container maxWidth="xl">
-        <div className="flex justify-around">
-          <p>Copyright © 2023 college booking</p>
+        <div className="flex flex-col md:flex-row items-center justify-around gap-5">
+          <p>
+            <small>Copyright © 2023 college booking</small>
+          </p>
           <div className="flex gap-5">
             <Link to="#">Disclaimer</Link>
             <Link to="#">Terms</Link>

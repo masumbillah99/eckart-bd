@@ -1,0 +1,40 @@
+{
+    "reviews": [
+        {
+            "id": 1,
+            "reviewers_name": "John Doe",
+            "reviewer_img": "https://example.com/reviewer1.jpg",
+            "description": "Great product! It exceeded my expectations. Highly recommended. Great product! It exceeded my expectations. Highly recommended."
+        },
+        {
+            "id": 2,
+            "reviewers_name": "Jane Smith",
+            "reviewer_img": "https://example.com/reviewer2.jpg",
+            "description": "I'm impressed with the quality and fast shipping. Will buy again! Great product! It exceeded my expectations. Highly recommended."
+        },
+        {
+            "id": 3,
+            "reviewers_name": "Mike Johnson",
+            "reviewer_img": "https://example.com/reviewer3.jpg",
+            "description": "This is exactly what I needed. The customer service was outstanding too. Great product! It exceeded my expectations. Highly recommended."
+        },
+        {
+            "id": 4,
+            "reviewers_name": "Emily Wilson",
+            "reviewer_img": "https://example.com/reviewer4.jpg",
+            "description": "The product arrived on time and in perfect condition. Very satisfied! The item is of excellent quality. I'm happy with my purchase."
+        },
+        {
+            "id": 5,
+            "reviewers_name": "David Brown",
+            "reviewer_img": "https://example.com/reviewer5.jpg",
+            "description": "The item is of excellent quality. I'm happy with my purchase. Great product! It exceeded my expectations. Highly recommended."
+        },
+        {
+            "id": 6,
+            "reviewers_name": "Sarah Turner",
+            "reviewer_img": "https://example.com/reviewer6.jpg",
+            "description": "Fast and friendly service. I'll definitely shop here again! The item is of excellent quality. I'm happy with my purchase."
+        }
+    ]
+}

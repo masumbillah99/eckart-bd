@@ -8,15 +8,16 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 // import AdbIcon from "@mui/icons-material/Adb";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import logo from "../../../assets/logo.png";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
-const pages = ["Home", "Colleges", "Admission", "My College"];
+// const pages = ["Home", "Colleges", "Admission", "My College"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
 function Navbar() {
@@ -44,6 +45,43 @@ function Navbar() {
     },
   });
 
+  const navItems = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "active-btn" : "idle-btn")}
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/colleges"
+          className={({ isActive }) => (isActive ? "active-btn" : "idle-btn")}
+        >
+          Colleges
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/admission"
+          className={({ isActive }) => (isActive ? "active-btn" : "idle-btn")}
+        >
+          Admission
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/myCollege"
+          className={({ isActive }) => (isActive ? "active-btn" : "idle-btn")}
+        >
+          My College
+        </NavLink>
+      </li>
+    </>
+  );
+
   return (
     <AppBar
       position="static"
@@ -53,6 +91,7 @@ function Navbar() {
         <ThemeProvider theme={theme}>
           <Toolbar disableGutters>
             {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+
             {/* desktop screen */}
             <Avatar
               alt=""
@@ -80,6 +119,7 @@ function Navbar() {
               College Book
             </Typography>
 
+            {/* small screen */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -109,11 +149,14 @@ function Navbar() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
+                <ul className="px-6 py-3 flex flex-col gap-4 font-bold">
+                  {navItems}
+                </ul>
+                {/* {pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="right">{page}</Typography>
                   </MenuItem>
-                ))}
+                ))} */}
               </Menu>
             </Box>
 
@@ -145,16 +188,19 @@ function Navbar() {
               College Book
             </Typography>
 
+            {/* desktop screen */}
             <Box
               sx={{
                 flexGrow: 1,
                 display: { xs: "none", md: "flex" },
                 justifyContent: "flex-end",
-                gap: "12px",
-                mr: "21px",
+                gap: "17px",
+                mr: "29px",
+                listStyle: "none",
               }}
             >
-              {pages.map((page) => (
+              {navItems}
+              {/* {pages.map((page) => (
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
@@ -162,7 +208,7 @@ function Navbar() {
                 >
                   {page}
                 </Button>
-              ))}
+              ))} */}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
