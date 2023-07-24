@@ -12,7 +12,7 @@ const SingleCollegeCard = () => {
   //   console.log(collegeData);
 
   const {
-    id,
+    _id,
     college_logo,
     college_image,
     college_name,

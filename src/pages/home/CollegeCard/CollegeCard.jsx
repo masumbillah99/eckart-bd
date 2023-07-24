@@ -6,7 +6,7 @@ const CollegeCard = () => {
   const [collegesData, setCollegesData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/colleges")
+    fetch(`${import.meta.env.VITE_SERVER}/colleges`)
       .then((res) => res.json())
       .then((data) => setCollegesData(data));
   }, []);
@@ -17,7 +17,7 @@ const CollegeCard = () => {
       <hr className="w-1/6 border-2 border-purple-600 mb-5 mt-2" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {collegesData?.map((collegeData) => (
-          <CollegeCardData key={collegeData?.id} collegeData={collegeData} />
+          <CollegeCardData key={collegeData?._id} collegeData={collegeData} />
         ))}
       </div>
     </Container>

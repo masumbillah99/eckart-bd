@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const CollegeCardData = ({ collegeData }) => {
   const {
-    id,
+    _id,
     college_image,
     college_name,
     admission_dates,
@@ -71,7 +71,7 @@ const CollegeCardData = ({ collegeData }) => {
       </CardContent>
       <CardActions>
         <Button variant="contained">
-          <Link to={`/colleges/${id}`}>View Details</Link>
+          <Link to={`/colleges/${_id}`}>View Details</Link>
         </Button>
       </CardActions>
     </Card>
