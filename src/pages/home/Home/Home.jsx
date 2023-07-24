@@ -2,6 +2,7 @@ import { Button, Container, TextField } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";
 import CollegeCard from "../CollegeCard/CollegeCard";
+import CollegeGallery from "../CollegeGallery/CollegeGallery";
 
 const Home = () => {
   const [collegesData, setCollegesData] = useState([]);
@@ -35,10 +36,13 @@ const Home = () => {
       <h1 className="text-2xl font-bold">College Section</h1>
       <hr className="w-1/6 border-2 border-purple-600 mb-5 mt-2" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {collegesData.map((collegeData) => (
+        {collegesData?.map((collegeData) => (
           <CollegeCard key={collegeData?.id} collegeData={collegeData} />
         ))}
       </div>
+
+      {/* college gallery section */}
+      <CollegeGallery />
     </Container>
   );
 };

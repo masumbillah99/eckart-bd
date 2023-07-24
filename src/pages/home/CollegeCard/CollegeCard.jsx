@@ -50,7 +50,7 @@ const CollegeCard = ({ collegeData }) => {
         </Typography>
         <Typography variant="div" className="flex items-center gap-3">
           <SportsEsportsIcon />
-          {sports_categories.slice(0, 3).map((evs, index) => (
+          {sports_categories?.slice(0, 3)?.map((evs, index) => (
             <Typography className="" variant="body1" key={index}>
               {evs}
               {","}
@@ -60,15 +60,15 @@ const CollegeCard = ({ collegeData }) => {
         <Typography variant="div">
           <EventNoteRoundedIcon /> Events:
           <br />
-          {events.map((evs, index) => (
+          {events?.map((evs, index) => (
             <Typography className="pl-10" variant="body1" key={index}>
-              {index + 1}. {evs.event_name}
+              {index + 1}. {evs?.event_name}
             </Typography>
           ))}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">View Details</Button>
+        <Button variant="contained">View Details</Button>
       </CardActions>
     </Card>
   );
