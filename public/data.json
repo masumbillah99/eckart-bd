@@ -1,0 +1,374 @@
+[
+    {
+        "id": 11,
+        "college_image": "https://suicidalbehaviourresearchlab.files.wordpress.com/2021/01/pexels-photo-2774556.jpeg",
+        "college_logo": "https://upload.wikimedia.org/wikipedia/en/c/cb/Dhaka_University_logo.svg",
+        "college_name": "University of Dhaka",
+        "admission_process": "Admissions are based on a competitive entrance exam followed by an interview.",
+        "admission_dates": {
+            "application_start": "2023-08-15",
+            "application_end": "2023-09-30",
+            "entrance_exam_date": "2023-10-15",
+            "interview_date": "2023-11-01"
+        },
+        "events": [
+            {
+                "event_name": "Freshers' Welcome",
+                "event_date": "2023-11-10",
+                "event_time": "5:00 PM",
+                "event_venue": "University Auditorium"
+            },
+            {
+                "event_name": "Annual Fest",
+                "event_date": "2024-02-20",
+                "event_time": "10:00 AM",
+                "event_venue": "University Campus Ground"
+            },
+            {
+                "event_name": "Tech Symposium",
+                "event_date": "2024-03-15",
+                "event_time": "9:30 AM",
+                "event_venue": "Engineering Block"
+            }
+        ],
+        "research_history": "The university has a rich history of groundbreaking research in various fields.",
+        "research_works": [
+            {
+                "research_title": "Advancements in Artificial Intelligence",
+                "research_area": "Computer Science",
+                "research_published_date": "2023-07-01",
+                "research_authors": [
+                    "John Smith",
+                    "Mary Johnson"
+                ]
+            },
+            {
+                "research_title": "Medical Breakthroughs in Cancer Treatment",
+                "research_area": "Medicine",
+                "research_published_date": "2023-09-15",
+                "research_authors": [
+                    "David Miller",
+                    "Emily Davis",
+                    "Robert Wilson"
+                ]
+            }
+        ],
+        "sports_categories": [
+            "Football",
+            "Basketball",
+            "Cricket",
+            "Swimming",
+            "Tennis",
+            "Badminton"
+        ],
+        "location": "Dhaka, Bangladesh"
+    },
+    {
+        "id": 12,
+        "college_image": "https://optimise2.assets-servd.host/dm-group/production/images/In-School-Today_social.png?w=777&q=100&auto=format&fit=clip&dm=1668540981&s=2d990f5df384711d1cd84fb9c0ccc4d5",
+        "college_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbBSJU2MUWMI6LZPBw9ft7qeW_CzWCWyHvL-I_qrCQ_s7z6cdy",
+        "college_name": "Dhaka City College",
+        "admission_process": "Admissions are based on merit in the previous academic record.",
+        "admission_dates": {
+            "application_start": "2023-09-01",
+            "application_end": "2023-10-31",
+            "merit_list_announcement": "2023-11-15"
+        },
+        "events": [
+            {
+                "event_name": "Freshers' Welcome",
+                "event_date": "2023-11-10",
+                "event_time": "5:00 PM",
+                "event_venue": "University Auditorium"
+            },
+            {
+                "event_name": "Annual Fest",
+                "event_date": "2024-02-20",
+                "event_time": "10:00 AM",
+                "event_venue": "University Campus Ground"
+            },
+            {
+                "event_name": "Tech Symposium",
+                "event_date": "2024-03-15",
+                "event_time": "9:30 AM",
+                "event_venue": "Engineering Block"
+            }
+        ],
+        "research_history": "The college encourages student-led research initiatives in various disciplines.",
+        "research_works": [
+            {
+                "research_title": "Sustainable Architecture for Urban Development",
+                "research_area": "Architecture",
+                "research_published_date": "2023-10-10",
+                "research_authors": [
+                    "Alice Brown",
+                    "James Thompson"
+                ]
+            },
+            {
+                "research_title": "Environmental Conservation and Biodiversity",
+                "research_area": "Environmental Science",
+                "research_published_date": "2023-11-20",
+                "research_authors": [
+                    "Michael Clark",
+                    "Olivia Turner"
+                ]
+            }
+        ],
+        "sports_categories": [
+            "Volleyball",
+            "Athletics",
+            "Table Tennis",
+            "Chess",
+            "Yoga"
+        ],
+        "location": "Dhaka, Bangladesh"
+    },
+    {
+        "id": 13,
+        "college_image": "https://static.best.eu.org/images/education/eoe_events.png",
+        "college_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Morogram_of_RAJUK_Uttara_Model_College.svg/640px-Morogram_of_RAJUK_Uttara_Model_College.svg.png",
+        "college_name": "Rajuk Uttara Model College",
+        "admission_process": "Admissions are through a national-level entrance exam conducted by the institute.",
+        "admission_dates": {
+            "application_start": "2023-10-01",
+            "application_end": "2023-12-15",
+            "exam_date": "2023-11-10",
+            "result_announcement": "2023-12-05"
+        },
+        "events": [
+            {
+                "event_name": "Freshers' Welcome",
+                "event_date": "2023-11-10",
+                "event_time": "5:00 PM",
+                "event_venue": "University Auditorium"
+            },
+            {
+                "event_name": "Annual Fest",
+                "event_date": "2024-02-20",
+                "event_time": "10:00 AM",
+                "event_venue": "University Campus Ground"
+            },
+            {
+                "event_name": "Tech Symposium",
+                "event_date": "2024-03-15",
+                "event_time": "9:30 AM",
+                "event_venue": "Engineering Block"
+            }
+        ],
+        "research_history": "The institute has collaborations with leading research organizations for cutting-edge research.",
+        "research_works": [
+            {
+                "research_title": "Advancements in Renewable Energy",
+                "research_area": "Engineering",
+                "research_published_date": "2023-08-20",
+                "research_authors": [
+                    "Robert Johnson",
+                    "Emma Wilson"
+                ]
+            },
+            {
+                "research_title": "AI Applications in Robotics",
+                "research_area": "Robotics",
+                "research_published_date": "2023-11-05",
+                "research_authors": [
+                    "Sophia Brown",
+                    "William Miller"
+                ]
+            }
+        ],
+        "sports_categories": [
+            "Hockey",
+            "Kabaddi",
+            "Shooting",
+            "Taekwondo",
+            "Archery"
+        ],
+        "location": "Dhaka, Bangladesh"
+    },
+    {
+        "id": 14,
+        "college_image": "https://optimise2.assets-servd.host/dm-group/production/images/In-School-Today_social.png?w=777&q=100&auto=format&fit=clip&dm=1668540981&s=2d990f5df384711d1cd84fb9c0ccc4d5",
+        "college_logo": "https://www.duet.ac.bd/assets/frontend/img/duet-logo.png",
+        "college_name": "Dhaka University of Engineering and Technology",
+        "admission_process": "Admissions are based on portfolio evaluation and an aptitude test for creative fields.",
+        "admission_dates": {
+            "application_start": "2023-10-01",
+            "application_end": "2023-12-15",
+            "aptitude_test_date": "2023-12-30",
+            "portfolio_submission_end": "2023-12-31"
+        },
+        "events": [
+            {
+                "event_name": "Freshers' Welcome",
+                "event_date": "2023-11-10",
+                "event_time": "5:00 PM",
+                "event_venue": "University Auditorium"
+            },
+            {
+                "event_name": "Annual Fest",
+                "event_date": "2024-02-20",
+                "event_time": "10:00 AM",
+                "event_venue": "University Campus Ground"
+            },
+            {
+                "event_name": "Tech Symposium",
+                "event_date": "2024-03-15",
+                "event_time": "9:30 AM",
+                "event_venue": "Engineering Block"
+            }
+        ],
+        "research_history": "The college fosters artistic exploration and innovative creative expression.",
+        "research_works": [
+            {
+                "research_title": "Modern Art Trends",
+                "research_area": "Fine Arts",
+                "research_published_date": "2023-09-10",
+                "research_authors": [
+                    "Oliver Turner",
+                    "Sophie Clark"
+                ]
+            },
+            {
+                "research_title": "Impact of Visual Arts on Society",
+                "research_area": "Social Sciences",
+                "research_published_date": "2023-12-02",
+                "research_authors": [
+                    "Ella Davis",
+                    "Lucas Wilson"
+                ]
+            }
+        ],
+        "sports_categories": [
+            "Athletics",
+            "Horse Riding",
+            "Gardening",
+            "Cricket",
+            "Volleyball"
+        ],
+        "location": "Dhaka, Bangladesh"
+    },
+    {
+        "id": 15,
+        "college_image": "https://education.github.com/assets/global_campus/global-campus-event-2-b5f86c8585ba89449b3aac628464636d463cc4c1906e2a2d89e7391a3949669a.jpg",
+        "college_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsTTpeUUwqrk7BK-3peADQbhuik5ljoRCjueQUNpWemMRQ-5-B",
+        "college_name": "Dhaka Polytechnic Institute",
+        "admission_process": "Admissions are based on a national-level agricultural entrance exam.",
+        "admission_dates": {
+            "application_start": "2023-10-01",
+            "application_end": "2023-12-15",
+            "exam_date": "2023-11-25",
+            "result_announcement": "2023-12-20"
+        },
+        "events": [
+            {
+                "event_name": "Freshers' Welcome",
+                "event_date": "2023-11-10",
+                "event_time": "5:00 PM",
+                "event_venue": "University Auditorium"
+            },
+            {
+                "event_name": "Annual Fest",
+                "event_date": "2024-02-20",
+                "event_time": "10:00 AM",
+                "event_venue": "University Campus Ground"
+            },
+            {
+                "event_name": "Tech Symposium",
+                "event_date": "2024-03-15",
+                "event_time": "9:30 AM",
+                "event_venue": "Engineering Block"
+            }
+        ],
+        "research_history": "The university is renowned for its contributions to agricultural research and sustainable farming practices.",
+        "research_works": [
+            {
+                "research_title": "Organic Farming Innovations",
+                "research_area": "Agriculture",
+                "research_published_date": "2023-10-20",
+                "research_authors": [
+                    "Emma Johnson",
+                    "Jacob Brown"
+                ]
+            },
+            {
+                "research_title": "Climate-Smart Agriculture Techniques",
+                "research_area": "Environmental Studies",
+                "research_published_date": "2023-11-28",
+                "research_authors": [
+                    "Sophia Wilson",
+                    "Michael Turner"
+                ]
+            }
+        ],
+        "sports_categories": [
+            "Athletics",
+            "Horse Riding",
+            "Gardening",
+            "Cricket",
+            "Volleyball"
+        ],
+        "location": "Dhaka, Bangladesh"
+    },
+    {
+        "id": 16,
+        "college_image": "https://suicidalbehaviourresearchlab.files.wordpress.com/2021/01/pexels-photo-2774556.jpeg",
+        "college_logo": "https://scontent.fcla4-1.fna.fbcdn.net/v/t1.18169-9/4440_92495437358_4977342_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=pZyiUz208VkAX-oMexg&_nc_ht=scontent.fcla4-1.fna&oh=00_AfC7qPMAIBFq4r73z_QKeK-IhZnbsJ77LOw24x6uP7bLGA&oe=64E55F88",
+        "college_name": "Cumilla Polytechnic Institute",
+        "admission_process": "Admissions are based on a marine entrance exam and a personal interview.",
+        "admission_dates": {
+            "application_start": "2023-09-15",
+            "application_end": "2023-11-15",
+            "entrance_exam_date": "2023-11-30"
+        },
+        "events": [
+            {
+                "event_name": "Freshers' Welcome",
+                "event_date": "2023-11-10",
+                "event_time": "5:00 PM",
+                "event_venue": "University Auditorium"
+            },
+            {
+                "event_name": "Annual Fest",
+                "event_date": "2024-02-20",
+                "event_time": "10:00 AM",
+                "event_venue": "University Campus Ground"
+            },
+            {
+                "event_name": "Tech Symposium",
+                "event_date": "2024-03-15",
+                "event_time": "9:30 AM",
+                "event_venue": "Engineering Block"
+            }
+        ],
+        "research_history": "The institute contributes to marine conservation and research on marine ecosystems.",
+        "research_works": [
+            {
+                "research_title": "Marine Biodiversity Study",
+                "research_area": "Marine Biology",
+                "research_published_date": "2023-08-15",
+                "research_authors": [
+                    "Olivia Clark",
+                    "Noah Miller"
+                ]
+            },
+            {
+                "research_title": "Coral Reef Restoration Techniques",
+                "research_area": "Environmental Science",
+                "research_published_date": "2023-11-10",
+                "research_authors": [
+                    "Sophia Turner",
+                    "Alexander Davis"
+                ]
+            }
+        ],
+        "sports_categories": [
+            "Swimming",
+            "Sailing",
+            "Water Polo",
+            "Snorkeling",
+            "Surfing"
+        ],
+        "location": "Cumilla, Bangladesh"
+    }
+]
