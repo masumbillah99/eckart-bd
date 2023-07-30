@@ -7,11 +7,12 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import loginImg from "../../../assets/login.jpg";
 import useAuth from "../../../hooks/useAuth";
 import { Container } from "@mui/material";
+import { toast } from "react-toastify";
 
 const img_hoisting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const Register = () => {
-  const { registerUser } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
   const {
     register,
     handleSubmit,
@@ -37,31 +38,18 @@ const Register = () => {
       .then((imageData) => {
         if (imageData.success) {
           const imgURL = imageData.data.display_url;
-          // console.log(imgURL);
+          registerUser(data.email, data.password)
+            .then((result) => {
+              updateUserProfile(data.name, imgURL)
+                .then(() => {
+                  console.log(result.user);
+                  navigate("/login");
+                })
+                .catch((err) => toast.error(err.message));
+            })
+            .catch((err) => toast.error(err.message));
         }
-        registerUser(data.email, data.password)
-          .then((result) => {
-            console.log(result.user);
-            navigate("/login");
-          })
-          .catch((err) => {
-            console.log(err);
-            setError(err.message);
-          });
       });
-    // registerUser(data.email, data.password).then((result) => {
-    //   updateUserProfile(data.name)
-    //     .then(() => {
-    //       console.log(result.user);
-    //       navigate("/login");
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.message);
-    //       toast.error(err.message);
-    //     });
-    // });
-    //     }
-    //   });
 
     // if ((name, photo, email, password)) {
     //   registerUser(email, password)
@@ -236,10 +224,7 @@ const Register = () => {
           <div className="text-center mt-3">
             <p className="text-lg">
               Already registered college booking commerce? Please
-              <Link
-                className="text-orange-500 ms-1 hover:underline"
-                to="/login"
-              >
+              <Link className="text-orange-500 ms-1 underline" to="/login">
                 Login
               </Link>
             </p>

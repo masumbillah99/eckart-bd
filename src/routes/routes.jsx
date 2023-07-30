@@ -6,6 +6,7 @@ import Home from "../pages/home/Home/Home";
 import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
 import SingleCollegeCard from "../pages/SingleCollegeCard/SingleCollegeCard";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {

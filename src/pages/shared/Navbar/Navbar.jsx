@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import logo from "../../../assets/logo.png";
 import { Button, createTheme, ThemeProvider } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
 
@@ -245,10 +245,11 @@ const Navbar = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    alt=""
-                    src={`${user ? user.photoUrl : AccountCircle}`}
-                  />
+                  {user ? (
+                    <Avatar alt="user" src={user.photoURL} />
+                  ) : (
+                    <Avatar alt="" src={AccountCircle} />
+                  )}
                 </IconButton>
               </Tooltip>
               <Menu
@@ -291,7 +292,7 @@ const Navbar = () => {
                   </MenuItem>
                 ) : (
                   <MenuItem>
-                    <NavLink to="/login">Login</NavLink>
+                    <Link to="/login">Login</Link>
                   </MenuItem>
                 )}
               </Menu>

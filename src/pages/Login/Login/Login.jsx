@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import loginImg from "../../../assets/login.jpg";
 import SocialLogin from "../../../components/SocialLogin";
 import { Container } from "@mui/material";
@@ -16,7 +16,6 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(email, password);
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
@@ -85,11 +84,8 @@ const Login = () => {
               </Link>
             </p>
             <p className="text-lg mt-5">
-              New to Foreign Lab? Please
-              <Link
-                className="text-orange-500 hover:underline ms-1"
-                to="/register"
-              >
+              New to College Booking Commerce? Please
+              <Link className="text-orange-500 underline ms-1" to="/register">
                 Register
               </Link>
             </p>
@@ -98,11 +94,10 @@ const Login = () => {
               <span className="mx-3">OR</span>
               <hr className="border-gray-500 border w-1/5" />
             </div>
-            {/* <SocialLogin /> */}
+            <SocialLogin />
           </div>
         </div>
       </div>
-      <ToastContainer />
     </Container>
   );
 };
