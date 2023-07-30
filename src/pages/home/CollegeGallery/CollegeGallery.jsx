@@ -45,7 +45,7 @@ const CollegeGallery = () => {
     <div className="my-20">
       <h1 className="text-2xl font-bold">College Gallery</h1>
       <hr className="w-1/6 border-2 border-purple-600 mb-5 mt-2" />
-      <div className="grid grid-cols-4 gap-3 rounded-xl">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-xl">
         {imgGallery?.map((img) => (
           <Card sx={{ cursor: "pointer" }} key={img?.id}>
             <CardMedia

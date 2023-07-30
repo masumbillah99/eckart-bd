@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
-import MuseumIcon from "@mui/icons-material/Museum";
+import SchoolIcon from "@mui/icons-material/School";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import { Link } from "react-router-dom";
 
@@ -25,7 +25,19 @@ const CollegeCardData = ({ collegeData }) => {
   //   console.log(collegeData);
 
   return (
-    <Card>
+    <Card
+      sx={{
+        position: "relative",
+        height: {
+          xs: "550px",
+          sm: "550px",
+          // md: "550px",
+          // lg: "550px",
+          xl: "540px",
+          padding: "0 0 40px",
+        },
+      }}
+    >
       <CardMedia
         component="img"
         alt="college picture"
@@ -33,7 +45,7 @@ const CollegeCardData = ({ collegeData }) => {
         sx={{ height: "250px", textAlign: "center" }}
         className="mx-auto"
       />
-      <CardContent sx={{ padding: "40px" }}>
+      <CardContent sx={{ padding: { sm: "10px", lg: "40px" } }}>
         <Typography
           gutterBottom
           variant="h5"
@@ -46,11 +58,11 @@ const CollegeCardData = ({ collegeData }) => {
         <Typography sx={{ marginBottom: "5px", marginTop: "5px" }}>
           <LocationOnIcon sx={{ color: "#0D1E70" }} /> {location}
         </Typography>
-        <Typography sx={{ marginBottom: "5px", marginTop: "5px" }}>
-          <MuseumIcon /> Admission: {admission_dates?.application_start} -{" "}
+        <Typography className="flex items-center gap-3">
+          <SchoolIcon /> Admission: {admission_dates?.application_start} --{" "}
           {admission_dates?.application_end}
         </Typography>
-        <Typography variant="div" className="flex items-center gap-3">
+        {/* <Typography variant="div" className="flex items-center gap-3">
           <SportsEsportsIcon />
           {sports_categories?.slice(0, 3)?.map((evs, index) => (
             <Typography className="" variant="body1" key={index}>
@@ -67,13 +79,28 @@ const CollegeCardData = ({ collegeData }) => {
               {index + 1}. {evs?.event_name}
             </Typography>
           ))}
-        </Typography>
+        </Typography> */}
+        <Button
+          variant="contained"
+          sx={{
+            position: "absolute",
+            bottom: { xs: "10px", sm: "20px", md: "20px", lg: "10px" },
+            right: { xs: "10px", md: "20px", lg: "40px" },
+            left: { xs: "10px", md: "20px", lg: "40px" },
+          }}
+          className=""
+          // className="w-80 lg:w-96 h-10"
+        >
+          <Link to={`/colleges/${_id}`} className="w-full">
+            View Details
+          </Link>
+        </Button>
       </CardContent>
-      <CardActions>
+      {/* <CardActions sx={{ padding: "0 40px" }}>
         <Button variant="contained">
           <Link to={`/colleges/${_id}`}>View Details</Link>
         </Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 };
