@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import { useForm } from "react-hook-form";
 import WarningIcon from "@mui/icons-material/Warning";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import loginImg from "../../../assets/login.jpg";
 import useAuth from "../../../hooks/useAuth";
+import { Container } from "@mui/material";
 
 const img_hoisting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const Register = () => {
-  const { createUser } = useAuth();
+  const { registerUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -39,17 +39,20 @@ const Register = () => {
           const imgURL = imageData.data.display_url;
           // console.log(imgURL);
         }
-        createUser(data.email, data.password)
+        registerUser(data.email, data.password)
           .then((result) => {
             console.log(result.user);
+            navigate("/login");
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+            setError(err.message);
+          });
       });
     // registerUser(data.email, data.password).then((result) => {
     //   updateUserProfile(data.name)
     //     .then(() => {
     //       console.log(result.user);
-    //       toast.success("Sign up successful");
     //       navigate("/login");
     //     })
     //     .catch((err) => {
@@ -65,7 +68,6 @@ const Register = () => {
     //     .then((result) => {
     //       const createdUser = result.user;
     //       updateUserProfile(createdUser, name, photo);
-    //       toast.success("Successfully registered.");
     //       console.log(createdUser);
     //     })
     //     .catch((error) => {
@@ -75,13 +77,13 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto my-20">
+    <Container sx={{ marginTop: "40px", marginBottom: "40px" }}>
       <h1 className="mb-5 text-2xl font-bold text-center underline">
-        Register College Booking Commerce
+        Register - College Booking Commerce
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-3 mx-2 md:mx-20 lg:mx-0">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center gap-5">
         <img src={loginImg} className="w-full md:w-3/4 lg:w-full" alt="" />
-        <div>
+        <div className="w-full md:w-3/4 lg:w-full">
           <form onSubmit={handleSubmit(handleRegistration)}>
             <div className="relative z-0 mb-6 mx-auto group">
               <input
@@ -105,7 +107,7 @@ const Register = () => {
                 file:text-sm file:font-semibold
                 file:bg-violet-300 file:text-violet-700
                 hover:file:bg-violet-400"
-                {...register("image", { required: true })}
+                {...register("image")}
                 type="file"
               />
             </div>
@@ -244,8 +246,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
-    </div>
+    </Container>
   );
 };
 

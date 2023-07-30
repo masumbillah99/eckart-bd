@@ -1,37 +1,40 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import loginImg from "../../../assets/login.jpg";
 import SocialLogin from "../../../components/SocialLogin";
+import { Container } from "@mui/material";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
+  const { loginUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const location = useLocation();
-
+  const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(email, password);
-    // signInUser(email, password)
-    //   .then(() => {
-    //     toast.success("successfully logged in");
-    //     e.target.reset();
-    //     navigate(from, { replace: true });
-    //   })
-    //   .catch((error) => toast.error(error.message));
+    loginUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("You're successfully logged in");
+        e.target.reset();
+        navigate(from, { replace: true });
+      })
+      .catch((error) => toast.error(error.message));
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto my-20 pb-7">
+    <Container sx={{ marginTop: "40px", marginBottom: "40px" }}>
       <h1 className="mb-5 text-2xl font-bold text-center underline">
-        Login College Booking Commerce
+        Login - College Booking Commerce
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center gap-5">
         <img src={loginImg} className="w-3/4 lg:w-full" alt="" />
-        <div>
+        <div className="w-full md:w-3/4 lg:w-full">
           <form onSubmit={handleLogin}>
             <div className="relative z-0 mb-6 mx-auto group">
               <input
@@ -46,7 +49,7 @@ const Login = () => {
                 htmlFor="email"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Email address
+                Your Email
               </label>
             </div>
             <div className="relative z-0 mb-6 mx-auto group">
@@ -62,7 +65,7 @@ const Login = () => {
                 htmlFor="password"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Password
+                Your Password
               </label>
             </div>
             <div className="text-center">
@@ -82,7 +85,7 @@ const Login = () => {
               </Link>
             </p>
             <p className="text-lg mt-5">
-              New to College Booking Commerce? Please
+              New to Foreign Lab? Please
               <Link
                 className="text-orange-500 hover:underline ms-1"
                 to="/register"
@@ -99,9 +102,8 @@ const Login = () => {
           </div>
         </div>
       </div>
-
       <ToastContainer />
-    </div>
+    </Container>
   );
 };
 

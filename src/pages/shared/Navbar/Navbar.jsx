@@ -8,19 +8,20 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-// import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-// import AdbIcon from "@mui/icons-material/Adb";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import logo from "../../../assets/logo.png";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 // const pages = ["Home", "Colleges", "Admission", "My College"];
-const settings = ["Profile", "Dashboard", "Logout"];
 
-function Navbar() {
+const Navbar = () => {
+  const { user, logoutUser } = useAuth();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -44,6 +45,13 @@ function Navbar() {
       fontFamily: ["Open Sans"].join(","),
     },
   });
+
+  // handle logout user
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => toast.success("You're successfully logout"))
+      .catch((error) => toast.error(error.message));
+  };
 
   const navItems = (
     <>
@@ -79,16 +87,43 @@ function Navbar() {
           My College
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/login"
-          className={({ isActive }) => (isActive ? "active-btn" : "idle-btn")}
-        >
-          Login
-        </NavLink>
-      </li>
     </>
   );
+
+  // const settings = ["Profile", "Dashboard", `${user ? "Logout" : "Login"}`];
+  // const settings = (
+  //   <>
+  //     <MenuItem>
+  //       <NavLink>Profile</NavLink>
+  //     </MenuItem>
+  //     <MenuItem>
+  //       <NavLink>Dashboard</NavLink>
+  //     </MenuItem>
+  //     {user ? (
+  //       <>
+  //         <MenuItem>
+  //           <button
+  //             onClick={handleLogout}
+  //             className="btn btn-ghost pt-4 bg-red-500 hover:bg-red-700"
+  //           >
+  //             Logout
+  //           </button>
+  //         </MenuItem>
+  //       </>
+  //     ) : (
+  //       <MenuItem>
+  //         <NavLink
+  //           to="/login"
+  //           // className={({ isActive }) =>
+  //           //   isActive ? "text-[#EEFF25]" : "text-gray-300"
+  //           // }
+  //         >
+  //           Login
+  //         </NavLink>
+  //       </MenuItem>
+  //     )}
+  //   </>
+  // );
 
   return (
     <AppBar
@@ -98,9 +133,6 @@ function Navbar() {
       <Container maxWidth="xl">
         <ThemeProvider theme={theme}>
           <Toolbar disableGutters>
-            {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
-
-            {/* desktop screen */}
             <Avatar
               alt=""
               src={logo}
@@ -208,21 +240,15 @@ function Navbar() {
               }}
             >
               {navItems}
-              {/* {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
-              ))} */}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="" src={AccountCircle} />
+                  <Avatar
+                    alt=""
+                    src={`${user ? user.photoUrl : AccountCircle}`}
+                  />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -241,11 +267,33 @@ function Navbar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
+                {/* {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
-                ))}
+                ))} */}
+                {/* {settings} */}
+                <MenuItem>
+                  <NavLink>Profile</NavLink>
+                </MenuItem>
+                <MenuItem>
+                  <NavLink>Dashboard</NavLink>
+                </MenuItem>
+                {user ? (
+                  <MenuItem>
+                    <Button
+                      onClick={handleLogout}
+                      variant="contained"
+                      color="warning"
+                    >
+                      Logout
+                    </Button>
+                  </MenuItem>
+                ) : (
+                  <MenuItem>
+                    <NavLink to="/login">Login</NavLink>
+                  </MenuItem>
+                )}
               </Menu>
             </Box>
           </Toolbar>
@@ -253,5 +301,5 @@ function Navbar() {
       </Container>
     </AppBar>
   );
-}
+};
 export default Navbar;
