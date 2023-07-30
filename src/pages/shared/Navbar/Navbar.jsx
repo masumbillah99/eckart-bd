@@ -79,6 +79,14 @@ function Navbar() {
           My College
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/login"
+          className={({ isActive }) => (isActive ? "active-btn" : "idle-btn")}
+        >
+          Login
+        </NavLink>
+      </li>
     </>
   );
 

@@ -2,25 +2,26 @@ import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import GoogleIcon from "@mui/icons-material/Google";
-import { AuthContext } from "../providers/AuthProvider";
+// import { AuthContext } from "../providers/AuthProvider";
 
 const SocialLogin = () => {
-  const { googleSignIn } = useContext(AuthContext);
+  // const { googleSignIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSign = () => {
-    googleSignIn()
-      .then((result) => {
-        // console.log(result.user);
-        // save user to db
-        // saveUser(result.user);
-        console.log(result.user);
-        toast.success("Sign in with google successful");
-        navigate(from, { replace: true });
-      })
-      .catch((error) => toast.error(error.message));
+    console.log("social login");
+    // googleSignIn()
+    //   .then((result) => {
+    //     // console.log(result.user);
+    //     // save user to db
+    //     // saveUser(result.user);
+    //     console.log(result.user);
+    //     toast.success("Sign in with google successful");
+    //     navigate(from, { replace: true });
+    //   })
+    //   .catch((error) => toast.error(error.message));
   };
 
   return (

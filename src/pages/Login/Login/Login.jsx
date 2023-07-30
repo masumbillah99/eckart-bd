@@ -2,11 +2,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import loginImg from "../../../assets/login.jpg";
-import { AuthContext } from "../../../providers/AuthProvider";
 import SocialLogin from "../../../components/SocialLogin";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -16,13 +14,14 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    signInUser(email, password)
-      .then(() => {
-        toast.success("successfully logged in");
-        e.target.reset();
-        navigate(from, { replace: true });
-      })
-      .catch((error) => toast.error(error.message));
+    console.log(email, password);
+    // signInUser(email, password)
+    //   .then(() => {
+    //     toast.success("successfully logged in");
+    //     e.target.reset();
+    //     navigate(from, { replace: true });
+    //   })
+    //   .catch((error) => toast.error(error.message));
   };
 
   return (
@@ -96,7 +95,7 @@ const Login = () => {
               <span className="mx-3">OR</span>
               <hr className="border-gray-500 border w-1/5" />
             </div>
-            <SocialLogin />
+            {/* <SocialLogin /> */}
           </div>
         </div>
       </div>

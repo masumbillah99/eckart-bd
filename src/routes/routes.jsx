@@ -6,7 +6,6 @@ import Home from "../pages/home/Home/Home";
 import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
 import SingleCollegeCard from "../pages/SingleCollegeCard/SingleCollegeCard";
-import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +24,7 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/login", element: <Login /> },
-  // { path: "/register", element: <Register /> },
+  { path: "/register", element: <Register /> },
 ]);
 
 export default router;
