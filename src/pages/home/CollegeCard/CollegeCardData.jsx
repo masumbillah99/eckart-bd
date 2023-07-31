@@ -38,7 +38,7 @@ const CollegeCardData = ({ collegeData }) => {
         alt="college picture"
         image={college_image}
         sx={{ height: "250px", textAlign: "center" }}
-        className="mx-auto"
+        className="mx-auto hover:scale-95 transition-all cursor-pointer"
       />
       <CardContent sx={{ padding: { sm: "10px", lg: "40px" } }}>
         <Typography
@@ -86,7 +86,7 @@ const CollegeCardData = ({ collegeData }) => {
           className=""
           // className="w-80 lg:w-96 h-10"
         >
-          <Link to={`/colleges/${_id}`} className="w-full">
+          <Link to={`/colleges/${_id}`} className="w-full py-1">
             View Details
           </Link>
         </Button>

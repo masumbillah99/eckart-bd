@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
 import SingleCollegeCard from "../pages/SingleCollegeCard/SingleCollegeCard";
 import "react-toastify/dist/ReactToastify.css";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
       { path: "/colleges", element: <CollegeCard /> },
       {
         path: "/colleges/:id",
-        element: <SingleCollegeCard />,
+        element: (
+          <PrivateRoute>
+            <SingleCollegeCard />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_SERVER}/colleges/${params.id}`),
       },

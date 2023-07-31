@@ -19,7 +19,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const [show, setShow] = useState(false);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const navigate = useNavigate();
 
   // handle registration
@@ -213,7 +213,7 @@ const Register = () => {
               >
                 Confirm Password
               </label>
-              {error && <span className="text-red-500">{error}</span>}
+              {/* {error && <span className="text-red-500">{error}</span>} */}
             </div>
             <input
               type="submit"
