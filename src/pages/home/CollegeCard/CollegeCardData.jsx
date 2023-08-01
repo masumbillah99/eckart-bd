@@ -29,18 +29,20 @@ const CollegeCardData = ({ collegeData }) => {
           // md: "550px",
           // lg: "550px",
           xl: "540px",
-          padding: "0 0 40px",
         },
+        padding: "20px",
+        borderRadius: "11px",
       }}
+      className="border hover:shadow-lg hover:shadow-slate-200 transition-all"
     >
       <CardMedia
         component="img"
         alt="college picture"
         image={college_image}
         sx={{ height: "250px", textAlign: "center" }}
-        className="mx-auto hover:scale-95 transition-all cursor-pointer"
+        className="mx-auto cursor-pointer"
       />
-      <CardContent sx={{ padding: { sm: "10px", lg: "40px" } }}>
+      <CardContent sx={{ padding: { sm: "10px", lg: "15px 0 0" } }}>
         <Typography
           gutterBottom
           variant="h5"
@@ -79,9 +81,9 @@ const CollegeCardData = ({ collegeData }) => {
           variant="contained"
           sx={{
             position: "absolute",
-            bottom: { xs: "10px", sm: "20px", md: "20px", lg: "10px" },
-            right: { xs: "10px", md: "20px", lg: "40px" },
-            left: { xs: "10px", md: "20px", lg: "40px" },
+            bottom: { xs: "10px", sm: "20px", md: "20px", lg: "15px" },
+            right: { xs: "10px", md: "20px", lg: "20px" },
+            left: { xs: "10px", md: "20px", lg: "20px" },
           }}
           className=""
           // className="w-80 lg:w-96 h-10"
@@ -91,11 +93,6 @@ const CollegeCardData = ({ collegeData }) => {
           </Link>
         </Button>
       </CardContent>
-      {/* <CardActions sx={{ padding: "0 40px" }}>
-        <Button variant="contained">
-          <Link to={`/colleges/${_id}`}>View Details</Link>
-        </Button>
-      </CardActions> */}
     </Card>
   );
 };

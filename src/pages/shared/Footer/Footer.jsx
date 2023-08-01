@@ -26,9 +26,6 @@ const Footer = () => {
             <Link to="https://github.com/masumbillah99" target={"_blank"}>
               <GitHubIcon />
             </Link>
-            <Link to="https://youtube.com/@awebtutor9986" target={"_blank"}>
-              <YouTubeIcon />
-            </Link>
             <Link to="https://linkedin.com/in/masumbillah99" target={"_blank"}>
               <LinkedInIcon />
             </Link>
@@ -37,6 +34,9 @@ const Footer = () => {
               target={"_blank"}
             >
               <FacebookIcon />
+            </Link>
+            <Link to="https://youtube.com/@awebtutor9986" target={"_blank"}>
+              <YouTubeIcon />
             </Link>
           </div>
         </div>
