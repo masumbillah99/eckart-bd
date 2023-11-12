@@ -11,7 +11,7 @@ const roboto = Roboto({
 });
 
 export const metadata = {
-  title: "Hat Bazar",
+  title: "HatBazar",
   description: "Hat Bazar is an e-commerce web application",
 };
 
