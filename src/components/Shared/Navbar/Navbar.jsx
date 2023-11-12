@@ -5,6 +5,9 @@ import useTheme from "@/hooks/useTheme";
 import { afterLoginNavLinks, beforeLoginNavLinks } from "@/data/navData";
 import Link from "next/link";
 import { useState } from "react";
+import { BsFillCartCheckFill } from "react-icons/bs";
+import logo from "@/assets/logo.png";
+import Image from "next/image";
 
 const Navbar = () => {
   const user = null;
@@ -17,14 +20,19 @@ const Navbar = () => {
     <section className="shadow-lg dark:bg-slate-900">
       <nav className="navbar sticky top-0 z-10 lg:pr-3 max-w-screen-xl mx-auto">
         <div className="flex-1">
-          <Link href="/" className="text-2xl font-bold uppercase">
-            Hat Bazar
+          <Link
+            href="/"
+            className="text-2xl font-bold uppercase flex items-center gap-3"
+          >
+            <Image alt="logo" src={logo} className="w-9 h-9" />{" "}
+            <span>hat bazar</span>
           </Link>
         </div>
+
         <div
           className={`absolute ${
             navToggle ? "left-0" : "left-[-120%]"
-          } top-[4.2rem] flex w-full flex-col bg-[#F1F1F1] pb-3 pt-2 transition-all duration-300 dark:bg-slate-900 lg:static lg:w-[unset] lg:flex-row lg:bg-transparent lg:pb-0 md:pt-0 dark:lg:bg-transparent`}
+          } top-[4.2rem] flex w-full flex-col bg-[#F1F1F1] py-5 transition-all duration-300 dark:bg-slate-900 lg:static lg:w-[unset] lg:flex-row lg:bg-transparent lg:pb-0 md:pt-0 dark:lg:bg-transparent`}
         >
           <ul className="flex flex-col lg:flex-row gap-3 px-1 font-semibold">
             {navLinks.map(({ path, title }) => (

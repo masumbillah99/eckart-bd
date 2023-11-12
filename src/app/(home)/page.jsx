@@ -1,9 +1,10 @@
 import React from "react";
+import BgSlider from "./BgSlider";
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Home page</h1>
+      <BgSlider />
     </div>
   );
 };
