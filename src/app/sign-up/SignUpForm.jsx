@@ -21,7 +21,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleRegister)} className="card-body">
+    <form onSubmit={handleSubmit(handleRegister)} className="">
       <div className="form-control">
         <label htmlFor="name" className="label label-text font-semibold">
           Your Name
