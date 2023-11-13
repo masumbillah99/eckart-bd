@@ -2,17 +2,15 @@
 
 import useAuth from "@/hooks/useAuth";
 import SocialLogin from "@/components/SocialLogin";
-// import createJWT from "@/utils/createJWT";
+import createJWT from "@/utils/createJWT";
 import Link from "next/link";
-// import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 // import { startTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { TbFidgetSpinner } from "react-icons/tb";
 import { useState } from "react";
 
 const SignUpForm = () => {
-  const { createUser, profileUpdate, loading, setLoading } = useAuth();
   const [checked, setChecked] = useState(false);
   const {
     register,
@@ -21,6 +19,10 @@ const SignUpForm = () => {
     setValue,
     formState: { errors },
   } = useForm();
+  const { createUser, profileUpdate } = useAuth();
+  const search = useSearchParams();
+  const from = search.get("redirectUrl") || "/";
+  const { replace, refresh } = useRouter();
 
   const imageUpload = async (event) => {
     const formData = new FormData();
@@ -51,13 +53,13 @@ const SignUpForm = () => {
     const toastId = toast.loading("Loading...");
     const { name, photo, email, password } = data;
     try {
-      const user = await createUser(email, password);
-      console.log(user);
+      const { user } = await createUser(email, password);
+      await createJWT({ email });
       await profileUpdate({ displayName: name, photoURL: photo });
       toast.dismiss(toastId);
       toast.success("User created successfully");
+      replace(from);
     } catch (error) {
-      setLoading(false);
       toast.dismiss(toastId);
       toast.error(error.message);
     }
@@ -187,11 +189,7 @@ const SignUpForm = () => {
             className="bg-primary w-full rounded-md py-3 text-white uppercase disabled:bg-indigo-500 disabled:cursor-not-allowed"
             disabled={!checked}
           >
-            {loading ? (
-              <TbFidgetSpinner className="m-auto animate-spin" size={24} />
-            ) : (
-              "Continue"
-            )}
+            Continue
           </button>
         </div>
       </form>

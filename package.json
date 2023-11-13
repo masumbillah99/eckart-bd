@@ -1,5 +1,5 @@
 {
-  "name": "hat-bazar-next-client",
+  "name": "hat-bazar-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "daisyui": "^3.9.4",
     "firebase": "^10.6.0",
+    "jose": "^5.1.0",
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",

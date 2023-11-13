@@ -2,20 +2,23 @@ import useAuth from "@/hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { toast } from "react-toastify";
+import createJWT from "@/utils/createJWT";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SocialLogin = () => {
   const { googleLogin, setLoading } = useAuth();
+  const search = useSearchParams();
+  const from = search.get("redirectUrl") || "/";
+  const { replace, refresh } = useRouter();
 
   const handleGoogleLogin = async () => {
-    const toastId = toast.loading("Loading...");
     try {
       const { user } = await googleLogin();
-      console.log(user);
-      toast.dismiss(toastId);
+      await createJWT({ email: user?.email });
       toast.success("Google login successfully");
+      replace(from);
     } catch (error) {
       setLoading(false);
-      toast.dismiss(toastId);
       toast.error(error.message || "user not signed in");
     }
   };

@@ -1,29 +1,34 @@
 "use client";
 
-import useAuth from "@/hooks/useAuth";
 import SocialLogin from "@/components/SocialLogin";
-// import createJWT from "@/utils/createJWT";
+import useAuth from "@/hooks/useAuth";
+import createJWT from "@/utils/createJWT";
 import Link from "next/link";
-// import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 // import { startTransition } from "react";
 import { useForm } from "react-hook-form";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { toast } from "react-toastify";
 
 const LoginForm = () => {
-  const { loading, setLoading, signInUser } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { loading, setLoading, signInUser } = useAuth();
+  const search = useSearchParams();
+  const from = search.get("redirectUrl") || "/";
+  const { replace, refresh } = useRouter();
 
   const handleLogin = async (data, event) => {
     event.preventDefault();
     const { email, password } = data;
     try {
-      await signInUser(email, password);
+      const { user } = await signInUser(email, password);
+      await createJWT({ email });
       toast.success("User created successfully");
+      replace(from);
     } catch (error) {
       setLoading(false);
       toast.error(error.message);
