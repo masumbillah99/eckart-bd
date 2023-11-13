@@ -88,7 +88,10 @@ const Navbar = () => {
 
           {/* profile image */}
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <label
+              tabIndex={0}
+              className="btn btn-circle avatar hover:outline-none hover:bg-none"
+            >
               <div className="w-8 rounded-full">
                 <Image
                   alt="user-logo"
@@ -105,7 +108,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-48"
             >
               <li className="mb-2">
                 <NavLink

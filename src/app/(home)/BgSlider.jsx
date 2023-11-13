@@ -36,13 +36,15 @@ const BgSlider = () => {
           <SwiperSlide key={slider.id}>
             <div
               className="min-h-[500px] bg-no-repeat bg-cover bg-center bg-slate-300 bg-blend-multiply"
-              style={{ backgroundImage: `url(${slider.bg})` }}
+              style={{ backgroundImage: `url(${slider?.bg})` }}
             ></div>
             <div className="absolute top-16 text-center w-full">
               <h1 className="text-5xl md:text-7xl text-red-500 font-bold">
                 {slider.title}
               </h1>
-              <h4 className="text-2xl md:text-3xl font-bold mt-7">{slider.desc}</h4>
+              <h4 className="text-2xl md:text-3xl font-bold mt-7">
+                {slider.desc}
+              </h4>
             </div>
           </SwiperSlide>
         ))}
