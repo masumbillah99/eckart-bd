@@ -5,16 +5,25 @@ import useTheme from "@/hooks/useTheme";
 import { afterLoginNavLinks, beforeLoginNavLinks } from "@/data/navData";
 import Link from "next/link";
 import { useState } from "react";
-import { BsFillCartCheckFill } from "react-icons/bs";
+// import { BsFillCartCheckFill } from "react-icons/bs";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
+import useAuth from "@/hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const user = null;
+  const { user, logOutUser } = useAuth();
+  const { displayName, photoURL } = user || {};
   const cart = 1;
   const { theme, toggleTheme } = useTheme();
   const [navToggle, setNavToggle] = useState(false);
   const navLinks = user ? afterLoginNavLinks : beforeLoginNavLinks;
+
+  const handleLogout = () => {
+    logOutUser()
+      .then(() => toast.success("User logout successfully"))
+      .catch((error) => toast.error(error.message));
+  };
 
   return (
     <section className="shadow-lg dark:bg-slate-900">
@@ -75,6 +84,56 @@ const Navbar = () => {
                 </span>
               </div>
             </label>
+          </div>
+
+          {/* profile image */}
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-8 rounded-full">
+                <Image
+                  alt="user-logo"
+                  title={displayName}
+                  src={
+                    photoURL ||
+                    "https://i.ibb.co/0QZCv5C/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png"
+                  }
+                  width={30}
+                  height={30}
+                  className="h-10 w-10 rounded-full"
+                />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li className="mb-2">
+                <NavLink
+                  href="/profile"
+                  className="text-lg"
+                  activeClassName="text-blue-500"
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li className="mb-2">
+                <NavLink
+                  href="/dashboard"
+                  className="text-lg"
+                  activeClassName="text-blue-500"
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+              <li className="">
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-warning content-center text-white"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
           </div>
 
           {/* dark / light */}

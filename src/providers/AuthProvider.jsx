@@ -22,13 +22,13 @@ const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (user) {
-      getUserRole(user.email).then((data) => {
-        setRole(data?.role);
-      });
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     getUserRole(user.email).then((data) => {
+  //       setRole(data?.role);
+  //     });
+  //   }
+  // }, [user]);
 
   // sign up new users
   const createUser = (email, password) => {
@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
   };
 
   // google sign in
-  const googleSignIn = () => {
+  const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
@@ -87,7 +87,7 @@ const AuthProvider = ({ children }) => {
     signInUser,
     logOutUser,
     profileUpdate,
-    googleSignIn,
+    googleLogin,
     resetPassword,
   };
 
