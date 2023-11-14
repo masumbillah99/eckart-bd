@@ -5,24 +5,36 @@ import useTheme from "@/hooks/useTheme";
 import { afterLoginNavLinks, beforeLoginNavLinks } from "@/data/navData";
 import Link from "next/link";
 import { useState } from "react";
-// import { BsFillCartCheckFill } from "react-icons/bs";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-toastify";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const cart = 1;
   const { user, logOutUser } = useAuth();
   const { uid, displayName, photoURL } = user || {};
-  const cart = 1;
   const { theme, toggleTheme } = useTheme();
   const [navToggle, setNavToggle] = useState(false);
+  const { replace } = useRouter();
+  const pathname = usePathname();
   const navLinks = user ? afterLoginNavLinks : beforeLoginNavLinks;
 
-  const handleLogout = () => {
-    logOutUser()
-      .then(() => toast.success("User logout successfully"))
-      .catch((error) => toast.error(error.message));
+  const handleLogout = async () => {
+    try {
+      await logOutUser();
+      const res = await fetch("/api/auth/logout", {
+        method: "POST",
+      });
+      const data = await res.json();
+      toast.success("User logout successfully");
+      if (pathname.includes("/dashboard") || pathname.includes("/profile")) {
+        replace("/");
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (

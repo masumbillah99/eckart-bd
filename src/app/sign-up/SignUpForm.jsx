@@ -54,7 +54,7 @@ const SignUpForm = () => {
     const { name, photo, email, password } = data;
     try {
       const { user } = await createUser(email, password);
-      await createJWT({ email });
+      await createJWT({ email: user?.email });
       await profileUpdate({ displayName: name, photoURL: photo });
       toast.dismiss(toastId);
       toast.success("User created successfully");

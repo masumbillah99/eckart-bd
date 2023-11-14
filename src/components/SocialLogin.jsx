@@ -9,7 +9,7 @@ const SocialLogin = () => {
   const { googleLogin, setLoading } = useAuth();
   const search = useSearchParams();
   const from = search.get("redirectUrl") || "/";
-  const { replace, refresh } = useRouter();
+  const { replace } = useRouter();
 
   const handleGoogleLogin = async () => {
     try {
