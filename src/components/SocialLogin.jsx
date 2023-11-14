@@ -4,6 +4,7 @@ import { FaFacebook } from "react-icons/fa";
 import { toast } from "react-toastify";
 import createJWT from "@/utils/createJWT";
 import { useRouter, useSearchParams } from "next/navigation";
+import { saveUserInDb } from "@/utils/usersApi";
 
 const SocialLogin = () => {
   const { googleLogin, setLoading } = useAuth();
@@ -15,6 +16,7 @@ const SocialLogin = () => {
     try {
       const { user } = await googleLogin();
       await createJWT({ email: user?.email });
+      await saveUserInDb(user);
       toast.success("Google login successfully");
       replace(from);
     } catch (error) {

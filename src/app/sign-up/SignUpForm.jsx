@@ -9,6 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { saveUserInDb } from "@/utils/usersApi";
 
 const SignUpForm = () => {
   const [checked, setChecked] = useState(false);
@@ -56,6 +57,7 @@ const SignUpForm = () => {
       const { user } = await createUser(email, password);
       await createJWT({ email: user?.email });
       await profileUpdate({ displayName: name, photoURL: photo });
+      await saveUserInDb(user);
       toast.dismiss(toastId);
       toast.success("User created successfully");
       replace(from);
