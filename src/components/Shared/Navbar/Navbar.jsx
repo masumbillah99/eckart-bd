@@ -13,7 +13,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
   const cart = 1;
-  const { user, logOutUser } = useAuth();
+  const { user, role, logOutUser } = useAuth();
   const { uid, displayName, photoURL } = user || {};
   const { theme, toggleTheme } = useTheme();
   const [navToggle, setNavToggle] = useState(false);
@@ -134,7 +134,11 @@ const Navbar = () => {
                 </li>
                 <li className="mb-2">
                   <NavLink
-                    href="/dashboard"
+                    href={
+                      role === "admin"
+                        ? "/dashboard/adminHome"
+                        : "/dashboard/overview"
+                    }
                     className="text-lg"
                     activeClassName="text-blue-500"
                   >

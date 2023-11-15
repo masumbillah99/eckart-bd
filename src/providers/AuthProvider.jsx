@@ -12,6 +12,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import AuthContext from "@/contexts/AuthContext";
+import { getUserRoleFromDb } from "@/utils/usersApi";
 
 // initialize firebase authentication
 const auth = getAuth(app);
@@ -22,13 +23,14 @@ const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     getUserRole(user.email).then((data) => {
-  //       setRole(data?.role);
-  //     });
-  //   }
-  // }, [user]);
+  // set user role in state from db
+  useEffect(() => {
+    if (user) {
+      getUserRoleFromDb(user?.email).then((data) => {
+        setRole(data?.role);
+      });
+    }
+  }, [user]);
 
   // sign up new users
   const createUser = (email, password) => {

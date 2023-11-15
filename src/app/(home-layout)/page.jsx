@@ -1,4 +1,4 @@
-import BgSlider from "./BgSlider";
+import BgSlider from "./BgSlider/BgSlider";
 
 const HomePage = () => {
   return (

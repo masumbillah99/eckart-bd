@@ -4,7 +4,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#273647] to-indigo-700 dark:bg-transparent ">
+    <footer className="bg-[#273647] to-indigo-700 dark:bg-transparent mt-10">
       <section className="max-w-screen-2xl mx-auto">
         <div className="lg:w-[90%] md:[90%] w-full py-6 mx-auto flex flex-col lg:flex-row items-center lg:gap-0 gap-5 lg:justify-between justify-center">
           {/* logo section */}
