@@ -44,7 +44,7 @@ const BgSlider = () => {
           <SwiperSlide key={slider.id}>
             <div
               className="min-h-[600px] bg-no-repeat bg-cover bg-center bg-slate-300 bg-blend-multiply"
-              style={{ backgroundImage: `url(${slider?.bg.src})` }}
+              style={{ backgroundImage: `url(${slider?.bg?.src})` }}
             ></div>
             <div className="absolute bottom-10 left-5 w-full">
               <h1 className="badge badge-warning p-5 text-xl font-bold">
