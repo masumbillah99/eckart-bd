@@ -3,17 +3,26 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css/bundle";
+import slider1 from "@/assets/slider/slider1.jpg";
+import slider2 from "@/assets/slider/slider4.jpg";
+import slider3 from "@/assets/slider/slider3.jpg";
 
-const sliderData = [
+const sliderImages = [
   {
     id: 1,
-    bg: "slider1.jpg",
+    bg: slider1,
     title: "হাট-বাজার.কম",
     desc: "খাঁটি পণ্যের এক বিশ্বস্ত প্রতিষ্ঠান",
   },
   {
     id: 2,
-    bg: "slider2.webp",
+    bg: slider3,
+    title: "হাট-বাজার.কম",
+    desc: "খাঁটি পণ্যের এক বিশ্বস্ত প্রতিষ্ঠান",
+  },
+  {
+    id: 3,
+    bg: slider2,
     title: "হাট-বাজার.কম",
     desc: "খাঁটি পণ্যের এক বিশ্বস্ত প্রতিষ্ঠান",
   },
@@ -28,23 +37,19 @@ const BgSlider = () => {
         effect="fade"
         delay={3000}
         slidesPerView={1}
-        pagination={{ clickable: true }}
         modules={[EffectFade, Autoplay, Navigation, Pagination]}
         className="mySwiper"
       >
-        {sliderData.map((slider) => (
+        {sliderImages.map((slider) => (
           <SwiperSlide key={slider.id}>
             <div
-              className="min-h-[500px] bg-no-repeat bg-cover bg-center bg-slate-300 bg-blend-multiply"
-              style={{ backgroundImage: `url(${slider?.bg})` }}
+              className="min-h-[600px] bg-no-repeat bg-cover bg-center bg-slate-300 bg-blend-multiply"
+              style={{ backgroundImage: `url(${slider?.bg.src})` }}
             ></div>
-            <div className="absolute top-16 text-center w-full">
-              <h1 className="text-5xl md:text-7xl text-red-500 font-bold">
+            <div className="absolute bottom-10 left-5 w-full">
+              <h1 className="badge badge-warning p-5 text-xl font-bold">
                 {slider.title}
               </h1>
-              <h4 className="text-2xl md:text-3xl font-bold mt-7">
-                {slider.desc}
-              </h4>
             </div>
           </SwiperSlide>
         ))}
