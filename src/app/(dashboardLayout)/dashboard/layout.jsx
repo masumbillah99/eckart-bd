@@ -6,11 +6,11 @@ export const metadata = {
 
 const DashboardLayout = ({ children }) => {
   return (
-    <main className="w-full lg:flex relative dark:text-white">
-      <div>
+    <main className="w-full xl:flex relative dark:text-white">
+      <section>
         <Sidebar />
-      </div>
-      <section className="lg:w-[80%] w-full min-h-screen pt-5 px-5 md:pt-10">
+      </section>
+      <section className="w-full xl:w-[90%] px-5">
         {children}
       </section>
     </main>

@@ -1,160 +1,158 @@
 "use client";
 
-import PropTypes from "prop-types";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import { BsCartCheckFill } from "react-icons/bs";
+import { FaCircleUser } from "react-icons/fa6";
+import { HiUsers } from "react-icons/hi";
+import { IoBagAdd, IoHome } from "react-icons/io5";
+import {
+  MdDashboard,
+  MdShoppingCart,
+  MdOutlineProductionQuantityLimits,
+} from "react-icons/md";
+import useAuth from "@/hooks/useAuth";
+import Link from "next/link";
+import NavLink from "@/components/NavLink";
 import { useState } from "react";
-import { FaHome, FaUserShield } from "react-icons/fa";
-import { MdAdd } from "react-icons/md";
 
-const drawerWidth = 240;
+const Sidebar = () => {
+  const { user, role } = useAuth();
+  const [navToggle, setNavToggle] = useState(false);
 
-const Sidebar = (props) => {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const sidebarNavData = [];
+  console.log(role);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const adminNavData = [
+    { path: "/dashboard", title: "Dashboard", icon: <MdDashboard /> },
+    {
+      path: "/dashboard/add-product",
+      title: "Add Product",
+      icon: <IoBagAdd />,
+    },
+    {
+      path: "/dashboard/all-products",
+      title: "Manage Products",
+      icon: <MdOutlineProductionQuantityLimits />,
+    },
+    {
+      path: "/dashboard/orders",
+      title: "Manage Orders",
+      icon: <MdOutlineProductionQuantityLimits />,
+    },
+    {
+      path: "/dashboard/all-users",
+      title: "Manage Users",
+      icon: <HiUsers />,
+    },
+  ];
 
-  const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        {sidebarNavData.map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <FaHome /> : <FaUserShield />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {sidebarNavData.map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <FaHome /> : <FaUserShield />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  const userNavData = [
+    {
+      path: "/dashboard/overview",
+      title: "Overview",
+      icon: <MdDashboard />,
+    },
+    {
+      path: "/dashboard/my-cart",
+      title: "Cart Items",
+      icon: <MdShoppingCart />,
+    },
+    {
+      path: "/dashboard/my-orders",
+      title: "My Orders",
+      icon: <BsCartCheckFill />,
+    },
+    {
+      path: "/dashboard/profile",
+      title: "My Profile",
+      icon: <FaCircleUser />,
+    },
+  ];
 
-  // Remove this const when copying and pasting into your project.
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const commonNavData = [
+    {
+      path: "/",
+      title: "Home",
+      icon: <IoHome />,
+    },
+  ];
 
   return (
     <section>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-            ml: { sm: `${drawerWidth}px` },
-          }}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
+      <div className="drawer xl:drawer-open">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex items-center justify-end">
+          <label
+            htmlFor="my-drawer-2"
+            className="btn btn-circle swap swap-rotate drawer-button fixed top-2 xl:hidden mt-3 me-3"
+          >
+            <input
+              type="checkbox"
+              checked={navToggle}
+              onChange={() => setNavToggle((pre) => !pre)}
+            />
+            {/* open icon */}
+            <svg
+              className="swap-off fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 512 512"
             >
-              <MdAdd />
-            </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              Responsive drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Box
-          component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-          aria-label="mailbox folders"
-        >
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Drawer
-            container={container}
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-          >
-            {drawer}
-          </Drawer>
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Box>
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: 3,
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-          }}
-        >
-          <Toolbar />
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-            dolor purus non enim praesent elementum facilisis leo vel. Risus at
-            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
-            rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
-            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-            vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-          </Typography>
-        </Box>
-      </Box>
+              <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+            </svg>
+
+            {/* close icon */}
+            <svg
+              className="swap-on fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 512 512"
+            >
+              <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+            </svg>
+          </label>
+        </div>
+
+        {/* sidebar content */}
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <ul className="menu p-4 w-80 min-h-full bg-base-300 text-base-content text-lg font-semibold">
+            {user && role === "admin"
+              ? adminNavData?.map(({ path, title, icon }) => (
+                  <li key={path}>
+                    <NavLink
+                      href={path}
+                      exact={path === "/dashboard"}
+                      activeClassName="text-indigo-800"
+                    >
+                      {icon} {title}
+                    </NavLink>
+                  </li>
+                ))
+              : userNavData?.map(({ path, title, icon }) => (
+                  <li key={path}>
+                    <Link href={path}>
+                      {icon}
+                      {title}
+                    </Link>
+                  </li>
+                ))}
+            <div className="divider"></div>
+            {commonNavData?.map(({ path, title, icon }) => (
+              <li key={path}>
+                <Link href={path}>
+                  {icon}
+                  {title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
   );
 };

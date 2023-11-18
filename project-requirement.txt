@@ -1,0 +1,33 @@
+# hat-bazar project (next)
+
+Home-page: 
+1. show data by category and then click on category products show data by category
+2. top seller product
+3. electronics products
+4. computer products
+5. groceries products
+
+Category-page: 
+1. show data by category
+2. when click on products redirect to view details page and their a option to add-to-cart
+3. view details page contain product information and UI is good
+
+Admin-page: 
+1. add-products including needed information
+2. all-products page
+3. manage-users page
+
+User-page: 
+1. overview page where user summary is show,
+2. add-cart page (when user click on buy-now button a modal is open and they can buy with payment.
+3. buy-products page
+4. user-review page
+5. profile page
+
+Extra-page: 
+1. about-page
+2. contact-page
+3. help-center page
+
+Then:
+1. secure admin page for JWT

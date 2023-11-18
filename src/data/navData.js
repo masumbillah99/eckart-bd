@@ -3,10 +3,6 @@ const commonNavLinks = [
     path: "/",
     title: "Home",
   },
-  {
-    path: "/about",
-    title: "About",
-  },
 ];
 
 export const beforeLoginNavLinks = [

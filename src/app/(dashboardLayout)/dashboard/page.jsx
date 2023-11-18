@@ -6,7 +6,6 @@ import useAuth from "@/hooks/useAuth";
 
 const DashboardPage = () => {
   const { user, role } = useAuth();
-  console.log(user);
 
   return (
     <section>

@@ -1,13 +1,15 @@
-import BgSlider from "@/components/BgSlider/BgSlider";
-import ExploreHome from "@/components/ExploreHome/ExploreHome";
-import HatShipping from "@/components/HatShipping";
+import BgSlider from "@/components/Home/BgSlider/BgSlider";
+import CategoriesProduct from "@/components/Home/CategoriesProduct/CategoriesProduct";
+import ExploreHome from "@/components/Home/ExploreHome/ExploreHome";
+import HatShipping from "@/components/Home/HatShipping";
 
 const HomePage = () => {
   return (
     <>
       <BgSlider />
-      <HatShipping />
       <ExploreHome />
+      <CategoriesProduct />
+      <HatShipping />
     </>
   );
 };

@@ -83,7 +83,6 @@ const Footer = () => {
                 <span className="">
                   <Link
                     href={"/about"}
-                    target="_blank"
                     className="hover:text-indigo-800 hover:underline transition"
                   >
                     About us
@@ -94,7 +93,6 @@ const Footer = () => {
                 <span className="">
                   <Link
                     href={"/privacy-policy"}
-                    target="_blank"
                     className="hover:text-indigo-800 hover:underline transition"
                   >
                     Privacy Policy
@@ -105,7 +103,6 @@ const Footer = () => {
                 <span className="">
                   <Link
                     href={"/terms-condition"}
-                    target="_blank"
                     className="hover:text-indigo-800 hover:underline transition"
                   >
                     Terms &amp; Conditions
@@ -116,7 +113,6 @@ const Footer = () => {
                 <span className="">
                   <Link
                     href={"/faq"}
-                    target="_blank"
                     className="hover:text-indigo-800 hover:underline transition"
                   >
                     Ask Questions / FAQ

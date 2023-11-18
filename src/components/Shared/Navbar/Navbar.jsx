@@ -134,11 +134,7 @@ const Navbar = () => {
                 </li>
                 <li className="mb-2">
                   <NavLink
-                    href={
-                      role === "admin"
-                        ? "/dashboard/adminHome"
-                        : "/dashboard/overview"
-                    }
+                    href={"/dashboard"}
                     className="text-lg"
                     activeClassName="text-blue-500"
                   >
