@@ -1,63 +1,111 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Select from "react-select";
+import { useState } from "react";
 import CreatableSelect from "react-select/creatable";
+import Select from "react-select";
+import { addProductInDb } from "@/utils/productsApis";
+
+const categoriesOptions = [
+  { value: "electronics", label: "Electronics" },
+  { value: "mobile", label: "Mobile & Watch" },
+  { value: "computer", label: "Computer Items" },
+  { value: "sports", label: "Sports" },
+  { value: "clothing", label: "Clothing" },
+  { value: "books", label: "Books" },
+  { value: "islamic", label: "Islamic" },
+  { value: "toys", label: "Toys" },
+  { value: "groceries", label: "Groceries" },
+  { value: "kitchen", label: "Kitchen" },
+];
+
+const featuresOptions = [
+  { value: "beautiful", label: "beautiful" },
+  { value: "awesome", label: "awesome" },
+];
 
 const AddProductForm = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const images = [];
+  const [categoryOption, setCategoryOption] = useState(null);
+  const [featureOption, setFeatureOption] = useState(null);
+  const [images, setImages] = useState([]);
   const {
     register,
     handleSubmit,
-    getValues,
-    setValue,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const handleAddProduct = (data, event) => {
-    event.preventDefault();
-    let product = {
-      title,
-      model,
-      color,
-      brand,
-      origin_country,
-      price,
-      category,
-      sub_category,
-      warranty,
-      img,
-      capacity,
-      volume,
-      features: [],
-      frequency,
-      cable_length,
-      display_size,
-      material,
-      watts,
-    };
-    console.log(data);
+  const uploadMultiImg = async (event) => {
+    const formData = new FormData();
+    for (let i = 0; i < event.target.files.length; i++) {
+      formData.append("image", event.target.files[i]);
+      try {
+        const res = await fetch(
+          `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        const data = await res.json();
+        setImages((prevImg) => [...prevImg, data?.data?.url]);
+      } catch (error) {}
+    }
   };
 
-  const categoryOptions = [
-    { value: "electronics", label: "Electronics" },
-    { value: "mobile", label: "Mobile & Watch" },
-    { value: "computer", label: "Computer Items" },
-    { value: "sports", label: "Sports" },
-    { value: "clothing", label: "Clothing" },
-    { value: "books", label: "Books" },
-    { value: "islamic", label: "Islamic" },
-    { value: "toys", label: "Toys" },
-    { value: "groceries", label: "Groceries" },
-    { value: "kitchen", label: "Kitchen" },
-  ];
+  const handleAddProduct = async (data, event) => {
+    event.preventDefault();
+    data.category = categoryOption;
+    data.features = featureOption;
+
+    const {
+      title,
+      model,
+      brand,
+      origin_country,
+      category,
+      sub_category,
+      features,
+      color,
+      materials,
+      description,
+      price,
+      stock,
+      warranty,
+      volume,
+      capacity,
+      frequency,
+      display_size,
+      cable_length,
+      watts,
+    } = data;
+
+    const priceNumber = parseFloat(price);
+    const stockNumber = parseFloat(stock);
+    const updatedData = {
+      product: { title, model, color, materials, warranty, volume, capacity },
+      company: { brand, origin_country },
+      category,
+      sub_category,
+      features,
+      images: images,
+      description,
+      price: priceNumber,
+      stock: stockNumber,
+      info: { frequency, display_size, cable_length },
+      watts,
+    };
+
+    await addProductInDb(updatedData);
+    reset();
+  };
 
   return (
     <>
-      <form onSubmit={handleAddProduct}>
+      <form
+        onSubmit={handleSubmit(handleAddProduct)}
+        className="bg-[#F3F3F3] p-12 rounded-lg mx-2 md:mx-5 lg:mx-0"
+      >
         <div className="lg:flex gap-7">
           {/* left site from */}
           <div className="lg:w-[60%]">
@@ -143,24 +191,23 @@ const AddProductForm = () => {
                   Product Category
                 </label>
                 <Select
-                  defaultValue={selectedOption}
-                  onChange={setSelectedOption}
-                  options={categoryOptions}
-                  {...register("category", { required: true })}
+                  defaultValue={categoryOption}
+                  onChange={setCategoryOption}
+                  options={categoriesOptions}
+                  required
                 />
               </div>
 
               {/* sub-category */}
-              <div className="my-2">
-                <label
-                  className="block text-black dark:text-gray-200 mb-1 font-semibold"
-                  htmlFor="sub_category"
-                >
-                  Sub Category
+              <div className="form-control w-full">
+                <label className="font-semibold mb-3">
+                  Product Sub Category
                 </label>
-                <Select
-                  defaultValue={selectedOption}
-                  onChange={setSelectedOption}
+                <input
+                  className="input input-bordered bg-gray-100 w-full focus:outline-none hover:border-indigo-500"
+                  type="text"
+                  placeholder="Write sub category"
+                  name="sub_category"
                   {...register("sub_category")}
                 />
               </div>
@@ -174,9 +221,45 @@ const AddProductForm = () => {
                   features
                 </label>
                 <CreatableSelect
-                  defaultValue={selectedOption}
-                  onChange={setSelectedOption}
+                  defaultValue={featureOption}
+                  onChange={setFeatureOption}
+                  options={featuresOptions}
                   isMulti
+                  required
+                />
+              </div>
+
+              {/* Media information*/}
+              <div className="my-2">
+                <label
+                  className="block text-black dark:text-gray-200 mb-1 font-semibold"
+                  htmlFor="file"
+                >
+                  Add File
+                </label>
+                <input
+                  type="file"
+                  multiple
+                  className="file-input file-input-bordered file-input-primary w-full focus:outline-none"
+                  onChange={uploadMultiImg}
+                />
+              </div>
+
+              {/* color */}
+              <div>
+                <label
+                  className="block text-black dark:text-gray-200 mb-1 mt-3 font-semibold"
+                  htmlFor="color"
+                >
+                  Product Color
+                </label>
+                <input
+                  className="input input-bordered bg-gray-100 w-full focus:outline-none hover:border-indigo-500"
+                  type="text"
+                  placeholder="Write colors name"
+                  name="color"
+                  defaultValue={""}
+                  {...register("color")}
                 />
               </div>
 
@@ -214,108 +297,6 @@ const AddProductForm = () => {
                 ></textarea>
               </div>
             </div>
-
-            {/* Media information*/}
-            <div className="border rounded-xl w-full p-5 mb-5 shadow-xl dark:border-neutral-500 bg-transparent  ">
-              {/* Additional :*/}
-              <h3 className="text-black mb-1 dark:text-gray-200 mt-3 font-semibold">
-                Media
-              </h3>
-              <hr className="border-t border-[#FF7B13]" />
-              <div className="md:flex gap-5">
-                <div className="md:w-[60%] ">
-                  <label
-                    className="block text-black dark:text-gray-200 mb-1 mt-3 font-semibold "
-                    htmlFor="image"
-                  >
-                    Main Image:
-                  </label>
-                  <label className="shadow-md flex justify-center w-full h-32 md:h-96  transition bg-white dark:border-neutral-500 dark:bg-neutral-800   border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-                    {images ? (
-                      <span className="flex items-center space-x-2">
-                        file
-                        <span className="font-medium text-gray-600 dark:text-white">
-                          Drop files to Attach, or
-                          <span className="text-blue-600 underline">
-                            browse
-                          </span>
-                        </span>
-                      </span>
-                    ) : (
-                      <>
-                        <div className="flex relative overflow-hidden">
-                          <Image
-                            src={MainImage}
-                            className="object-cover"
-                            width={600}
-                            height={600}
-                            alt="main image"
-                          ></Image>
-                        </div>
-                      </>
-                    )}
-                    <input
-                      type="file"
-                      id="image"
-                      name="image"
-                      required
-                      className="hidden "
-                    />
-                  </label>
-                </div>
-
-                {/* Additional :*/}
-                <div className="md:w-[40%]">
-                  <label className="block text-black dark:text-gray-200 mb-1 mt-3 font-semibold ">
-                    Additional Image URLs:
-                  </label>
-
-                  <label className=" shadow-md flex justify-center w-full h-32 md:h-96   transition bg-white dark:border-neutral-500 dark:bg-neutral-800  border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-                    {images.length > 0 ? (
-                      <>
-                        <div className="grid grid-cols-2 overflow-hidden  row-span-2">
-                          {images.map((item, index) => (
-                            <div
-                              key={index}
-                              className="relative col-span-1 h-auto w-full row-span-1"
-                            >
-                              <Image
-                                src={item}
-                                height={100}
-                                width={300}
-                                className="object-cover"
-                                alt="sub image"
-                              ></Image>
-                            </div>
-                          ))}
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <span className="flex items-center space-x-2 ">
-                          file
-                          <span className="font-medium text-gray-600 dark:text-white">
-                            Drop files to Attach, or
-                            <span className="text-blue-600 underline">
-                              browse
-                            </span>
-                          </span>
-                        </span>
-                      </>
-                    )}
-
-                    <input
-                      type="file"
-                      id="images"
-                      multiple
-                      name="images"
-                      required
-                      className="hidden "
-                    />
-                  </label>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* right side from */}
@@ -339,20 +320,20 @@ const AddProductForm = () => {
                 />
               </div>
 
-              {/* Product Quantity */}
+              {/* Product stock */}
               <div>
                 <label
                   className="block text-black dark:text-gray-200 mb-1 mt-3 font-semibold"
-                  htmlFor="quantity"
+                  htmlFor="stock"
                 >
-                  Quantity
+                  Product Stock
                 </label>
                 <input
                   className="input input-bordered bg-gray-100 w-full focus:outline-none hover:border-indigo-500"
                   type="number"
                   placeholder="0"
-                  name="quantity"
-                  {...register("quantity", { required: true })}
+                  name="stock"
+                  {...register("stock", { required: true })}
                 />
               </div>
 

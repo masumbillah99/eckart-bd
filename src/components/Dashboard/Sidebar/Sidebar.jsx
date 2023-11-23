@@ -18,7 +18,7 @@ const Sidebar = () => {
   const { user, role } = useAuth();
   const [navToggle, setNavToggle] = useState(false);
 
-  console.log(role);
+  // console.log(role);
 
   const adminNavData = [
     { path: "/dashboard", title: "Dashboard", icon: <MdDashboard /> },
@@ -77,12 +77,12 @@ const Sidebar = () => {
 
   return (
     <section>
-      <div className="drawer xl:drawer-open">
+      <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex items-center justify-end">
+        <div className="drawer-content flex items-center justify-end relative">
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-circle swap swap-rotate drawer-button fixed top-2 xl:hidden mt-3 me-3"
+            className="btn btn-circle swap swap-rotate drawer-button fixed top-2 right-3 xl:hidden"
           >
             <input
               type="checkbox"
@@ -114,13 +114,13 @@ const Sidebar = () => {
         </div>
 
         {/* sidebar content */}
-        <div className="drawer-side">
+        <div className="drawer-side z-50">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-300 text-base-content text-lg font-semibold">
+          <ul className="menu p-4 w-80 h-full bg-base-200 text-gray-500 text-base font-semibold">
             {user && role === "admin"
               ? adminNavData?.map(({ path, title, icon }) => (
                   <li key={path}>

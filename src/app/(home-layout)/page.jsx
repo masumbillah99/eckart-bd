@@ -1,15 +1,15 @@
 import BgSlider from "@/components/Home/BgSlider/BgSlider";
-import CategoriesProduct from "@/components/Home/CategoriesProduct/CategoriesProduct";
+import Categories from "@/components/Home/Categories/Categories";
 import ExploreHome from "@/components/Home/ExploreHome/ExploreHome";
 import HatShipping from "@/components/Home/HatShipping";
 
-const HomePage = () => {
+const HomePage = async () => {
   return (
     <>
       <BgSlider />
       <ExploreHome />
-      <CategoriesProduct />
       <HatShipping />
+      <Categories />
     </>
   );
 };

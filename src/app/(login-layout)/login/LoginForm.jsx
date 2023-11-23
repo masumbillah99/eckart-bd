@@ -5,7 +5,8 @@ import useAuth from "@/hooks/useAuth";
 import createJWT from "@/utils/createJWT";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-// import { startTransition } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { toast } from "react-toastify";
@@ -16,7 +17,7 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { loading, setLoading, signInUser } = useAuth();
+  const { loading, setLoading, signInUser, googleLogin } = useAuth();
   const search = useSearchParams();
   const from = search.get("redirectUrl") || "/";
   const { replace, refresh } = useRouter();
@@ -32,6 +33,18 @@ const LoginForm = () => {
     } catch (error) {
       setLoading(false);
       toast.error(error.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const { user } = await googleLogin();
+      await createJWT({ email: user?.email });
+      toast.success("Google login successfully");
+      replace(from);
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.message || "user not signed in");
     }
   };
 
@@ -100,7 +113,14 @@ const LoginForm = () => {
         </Link>
       </p>
       <div className="divider">OR</div>
-      <SocialLogin />
+      <div className="flex flex-col gap-3">
+        <button onClick={handleGoogleLogin} className="btn btn-outline mx-auto">
+          <FcGoogle className="text-xl" /> Continue with Google
+        </button>
+        <button className="btn btn-outline mx-auto">
+          <FaFacebook className="text-xl" /> Continue with Facebook
+        </button>
+      </div>
     </div>
   );
 };

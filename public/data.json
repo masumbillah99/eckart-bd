@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Electronics",
+        "path": "electronics",
+        "imgUrl": "/categories/1.jpg"
+    },
+    {
+        "name": "Mobile & Watch",
+        "path": "mobile",
+        "imgUrl": "/categories/2.jpg"
+    },
+    {
+        "name": "Computer Items",
+        "path": "computer",
+        "imgUrl": "/categories/3.jpg"
+    },
+    {
+        "name": "Sports Items",
+        "path": "sports",
+        "imgUrl": "/categories/4.jpg"
+    },
+    {
+        "name": "Clothing",
+        "path": "clothes",
+        "imgUrl": "/categories/5.jpg"
+    },
+    {
+        "name": "Books",
+        "path": "books",
+        "imgUrl": "/categories/6.jpg"
+    },
+    {
+        "name": "Islamic Products",
+        "path": "islamic",
+        "imgUrl": "/categories/7.jpg"
+    },
+    {
+        "name": "Toys",
+        "path": "toys",
+        "imgUrl": "/categories/8.jpg"
+    },
+    {
+        "name": "Groceries",
+        "path": "groceries",
+        "imgUrl": "/categories/9.jpg"
+    },
+    {
+        "name": "Home & Kitchen",
+        "path": "kitchen",
+        "imgUrl": "/categories/10.jpg"
+    }
+]

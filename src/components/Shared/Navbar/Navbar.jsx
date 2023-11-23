@@ -37,6 +37,8 @@ const Navbar = () => {
     }
   };
 
+  // console.log(role);
+
   return (
     <section className="shadow-lg dark:bg-slate-900">
       <nav className="navbar sticky top-0 z-10 lg:pr-3 max-w-screen-xl mx-auto">
@@ -134,7 +136,9 @@ const Navbar = () => {
                 </li>
                 <li className="mb-2">
                   <NavLink
-                    href={"/dashboard"}
+                    href={
+                      role === "admin" ? "/dashboard" : "/dashboard/overview"
+                    }
                     className="text-lg"
                     activeClassName="text-blue-500"
                   >
