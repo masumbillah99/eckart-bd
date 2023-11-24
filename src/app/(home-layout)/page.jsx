@@ -8,8 +8,8 @@ const HomePage = async () => {
     <>
       <BgSlider />
       <ExploreHome />
-      <HatShipping />
       <Categories />
+      <HatShipping />
     </>
   );
 };

@@ -8,7 +8,7 @@ const LoginPage = () => {
       <h1 className="text-2xl font-bold text-center">
         Login to connect with us
       </h1>
-      <div className="max-w-xl mx-auto bg shadow-lg rounded-lg mt-5">
+      <div className="max-w-xl mx-auto bg shadow-lg border rounded-lg mt-5">
         <LoginForm />
       </div>
     </section>

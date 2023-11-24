@@ -36,6 +36,18 @@ export const getProductsByCategory = async (path) => {
   return data;
 };
 
+// get single product details
+export const getProductDetailsFromDb = async (id) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER}/product-details/${id}`,
+    {
+      cache: "no-cache",
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+
 /** post data in db */
 // add product item in db
 export const addProductInDb = async (productData) => {
