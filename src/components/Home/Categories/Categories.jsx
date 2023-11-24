@@ -12,7 +12,7 @@ const Categories = async () => {
         {allCategories &&
           allCategories?.map(({ _id, name, path, imgUrl }) => (
             <Link
-              href={path}
+              href={`/category/${path}`}
               key={_id}
               className="flex flex-col items-center gap-3 hover:text-blue-500"
             >

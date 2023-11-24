@@ -131,7 +131,13 @@ const Footer = () => {
         <div className="py-3 text-white text-center font-semibold">
           <p>
             &copy; All rights reserved by{" "}
-            <span className="text-orange-500 underline">hat-bazar.com</span>
+            <Link
+              href={"https://md-masumbillah.netlify.app"}
+              target="_blank"
+              className="text-orange-500 transition underline"
+            >
+              Developer Masum
+            </Link>
           </p>
         </div>
       </section>

@@ -11,7 +11,7 @@ const categoriesOptions = [
   { value: "mobile", label: "Mobile & Watch" },
   { value: "computer", label: "Computer Items" },
   { value: "sports", label: "Sports" },
-  { value: "clothing", label: "Clothing" },
+  { value: "clothes", label: "Clothing" },
   { value: "books", label: "Books" },
   { value: "islamic", label: "Islamic" },
   { value: "toys", label: "Toys" },
