@@ -1,12 +1,11 @@
-import React from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import AddToCartBtn from "@/components/AddToCartBtn/AddToCartBtn";
 
 const ProductDetails = ({ productDetails }) => {
-  const { product, company, sub_category, price, stock, rating } =
+  const { _id, product, company, sub_category, price, stock, rating } =
     productDetails;
 
   return (
-    <div class="">
+    <div class="w-2/3">
       <h1 class="text-2xl md:text-3xl font-bold text-gray-700">
         {product.title} | {product.color.split(" ")[0]} | {product.model}
       </h1>
@@ -29,9 +28,7 @@ const ProductDetails = ({ productDetails }) => {
         </p>
         <p className="badge badge-warning p-3">{stock} in stock</p>
         <div className="my-3">
-          <button className="flex items-center gap-2 bg-orange-400 hover:bg-orange-500 text-white text-xl py-2 px-7 rounded-md">
-            <FaShoppingCart /> <span>Add to Cart</span>
-          </button>
+          <AddToCartBtn _id={_id} textSize={"text-xl"} padding={"py-2 px-7"} />
         </div>
       </div>
     </div>

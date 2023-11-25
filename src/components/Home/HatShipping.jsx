@@ -3,7 +3,7 @@ import { MdCurrencyExchange } from "react-icons/md";
 
 const HatShipping = () => {
   return (
-    <section className="max-w-screen-xl mx-auto my-10 flex flex-col lg:flex-row items-center gap-3">
+    <section className="max-w-screen-xl mx-auto mt-20 mb-10 flex flex-col lg:flex-row items-center gap-3">
       <div className="flex items-center gap-5 bg-[#273647] p-5 rounded-lg">
         <div className="bg-orange-500 p-3 rounded-full">
           <FaShippingFast className="w-7 h-7" />

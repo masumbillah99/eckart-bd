@@ -1,79 +1,20 @@
 "use client";
 
-import { BsCartCheckFill } from "react-icons/bs";
-import { FaCircleUser } from "react-icons/fa6";
-import { HiUsers } from "react-icons/hi";
-import { IoBagAdd, IoHome } from "react-icons/io5";
-import {
-  MdDashboard,
-  MdShoppingCart,
-  MdOutlineProductionQuantityLimits,
-} from "react-icons/md";
-import useAuth from "@/hooks/useAuth";
-import Link from "next/link";
-import NavLink from "@/components/NavLink";
 import { useState } from "react";
+import Link from "next/link";
+import useAuth from "@/hooks/useAuth";
+import NavLink from "@/components/NavLink";
+import {
+  adminNavData,
+  commonNavData,
+  userNavData,
+} from "@/data/SidebarNavData";
 
 const Sidebar = () => {
   const { user, role } = useAuth();
   const [navToggle, setNavToggle] = useState(false);
 
   // console.log(role);
-
-  const adminNavData = [
-    { path: "/dashboard", title: "Dashboard", icon: <MdDashboard /> },
-    {
-      path: "/dashboard/add-product",
-      title: "Add Product",
-      icon: <IoBagAdd />,
-    },
-    {
-      path: "/dashboard/all-products",
-      title: "Manage Products",
-      icon: <MdOutlineProductionQuantityLimits />,
-    },
-    {
-      path: "/dashboard/orders",
-      title: "Manage Orders",
-      icon: <MdOutlineProductionQuantityLimits />,
-    },
-    {
-      path: "/dashboard/all-users",
-      title: "Manage Users",
-      icon: <HiUsers />,
-    },
-  ];
-
-  const userNavData = [
-    {
-      path: "/dashboard/overview",
-      title: "Overview",
-      icon: <MdDashboard />,
-    },
-    {
-      path: "/dashboard/my-cart",
-      title: "Cart Items",
-      icon: <MdShoppingCart />,
-    },
-    {
-      path: "/dashboard/my-orders",
-      title: "My Orders",
-      icon: <BsCartCheckFill />,
-    },
-    {
-      path: "/dashboard/profile",
-      title: "My Profile",
-      icon: <FaCircleUser />,
-    },
-  ];
-
-  const commonNavData = [
-    {
-      path: "/",
-      title: "Home",
-      icon: <IoHome />,
-    },
-  ];
 
   return (
     <section>
@@ -126,7 +67,7 @@ const Sidebar = () => {
                   <li key={path}>
                     <NavLink
                       href={path}
-                      exact={path === "/dashboard"}
+                      exact={path === "/dashboard/adminHome"}
                       activeClassName="text-indigo-800"
                     >
                       {icon} {title}

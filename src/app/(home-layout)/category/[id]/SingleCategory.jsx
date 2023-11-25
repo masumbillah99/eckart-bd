@@ -1,6 +1,7 @@
+import AddToCartBtn from "@/components/AddToCartBtn/AddToCartBtn";
 import Image from "next/image";
 import Link from "next/link";
-import { FaStar, FaShoppingCart } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 
 const SingleCategory = ({ productData, path }) => {
@@ -25,10 +26,8 @@ const SingleCategory = ({ productData, path }) => {
           <p className="flex items-center font-semibold text-lg">
             <MdOutlineCurrencyRupee /> {price}
           </p>
-          <div className="card-actions justify-between">
-            <button className="flex items-center gap-2 bg-orange-400 hover:bg-orange-500 text-white py-2 px-3 rounded-md">
-              <FaShoppingCart /> <span>Add to Cart</span>
-            </button>
+          <div className="card-actions justify-between mt-1">
+            <AddToCartBtn _id={_id} padding={"py-2 px-3"} />
             <Link
               href={`/category/${path}/${_id}`}
               className="font-semibold bg-[#E3F3FA] hover:bg-[#0397D3] hover:text-white transition border py-2 px-3 rounded-md"

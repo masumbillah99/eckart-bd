@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 
+/** get data from db */
 // get product categories
 export const productCategories = async () => {
   const res = await fetch(

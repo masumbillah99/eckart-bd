@@ -1,0 +1,16 @@
+
+* add more products
+* implement add-to-cart system
+    1. without login save product in local-storage & match it with product and show it add-to-cart page
+    2. user can increase product quantity
+    3. if quantity increase so money will be increase
+* user can't buy without login
+* payment page
+    1. stripe, ssl commerze (bkash, nagad), one more
+* user dashboard
+    1. overview page
+      * 3 box with his activity (add-to-cart, buy)
+      * a graph include his activity
+    2. wish list
+    3. settings page
+    4.
