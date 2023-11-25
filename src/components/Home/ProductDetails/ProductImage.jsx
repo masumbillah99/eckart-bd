@@ -13,7 +13,6 @@ import {
 const ProductImage = ({ productDetails }) => {
   const { category, images } = productDetails;
   const [mainImage, setMainImage] = useState(images[0]);
-  const [state, setState] = useState("");
 
   // highlight product image change handler
   const handleMainImage = (image) => {
@@ -21,7 +20,7 @@ const ProductImage = ({ productDetails }) => {
   };
 
   return (
-    <div class="lg:col-span-3 lg:row-end-1 mb-10 lg:mb-0 w-1/3">
+    <div class="lg:col-span-3 lg:row-end-1 mb-10 lg:mb-0 lg:w-1/3">
       <div class="lg:flex lg:items-start">
         <div class="lg:order-2 lg:ml-5 mb-5 lg:mb-0">
           <div class="max-w-3xl mx-auto px-10 py-5 overflow-hidden rounded-lg border">

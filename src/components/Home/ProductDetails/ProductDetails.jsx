@@ -5,7 +5,7 @@ const ProductDetails = ({ productDetails }) => {
     productDetails;
 
   return (
-    <div class="w-2/3">
+    <div class="lg:w-2/3">
       <h1 class="text-2xl md:text-3xl font-bold text-gray-700">
         {product.title} | {product.color.split(" ")[0]} | {product.model}
       </h1>

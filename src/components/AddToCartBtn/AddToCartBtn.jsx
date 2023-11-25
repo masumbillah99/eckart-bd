@@ -8,9 +8,9 @@ const AddToCartBtn = ({ _id, textSize, padding }) => {
     const cartItems = JSON.parse(localStorage.getItem("product-cart")) || [];
     const existItemIndex = cartItems.findIndex((item) => item._id === id);
     if (existItemIndex !== -1) {
-      toast("This product is already bookmarked");
+      toast("Already bookmarked! Go to Cart");
     } else {
-      const newItem = { _id: id };
+      const newItem = { _id: id, quantity: 1 };
       const updatedCartItems = [...cartItems, newItem];
       localStorage.setItem("product-cart", JSON.stringify(updatedCartItems));
       toast.success("Product added in cart");

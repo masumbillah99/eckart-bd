@@ -76,8 +76,8 @@ const Navbar = () => {
           </ul>
 
           {/* cart items */}
-          <div className="">
-            <label tabIndex={0} className="btn-ghost btn-circle btn">
+          <Link href={"/cart"} className="">
+            <label tabIndex={0} className="btn btn-ghost btn-circle ">
               <div className="indicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ const Navbar = () => {
                 </span>
               </div>
             </label>
-          </div>
+          </Link>
 
           {/* profile image */}
           {uid && (

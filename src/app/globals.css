@@ -2,5 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-} */
+/* common class */
+.bg-shadow-round {
+  @apply bg-base-100 border shadow-lg rounded-lg;
+}
