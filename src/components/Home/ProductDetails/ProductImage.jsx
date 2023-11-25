@@ -12,12 +12,12 @@ const ProductImage = ({ productDetails }) => {
   };
 
   return (
-    <div class="lg:col-span-3 lg:row-end-1">
+    <div class="lg:col-span-3 lg:row-end-1 mb-10 lg:mb-0">
       <div class="lg:flex lg:items-start">
         <div class="lg:order-2 lg:ml-5 mb-5 lg:mb-0">
           <div class="max-w-3xl mx-auto px-10 py-5 overflow-hidden rounded-lg border">
             <Image
-              width={200}
+              width={300}
               height={300}
               class="h-full w-3/4 md:w-1/2 lg:w-full"
               src={mainImage}
