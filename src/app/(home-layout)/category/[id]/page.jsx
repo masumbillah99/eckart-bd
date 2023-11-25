@@ -1,6 +1,6 @@
 import { getProductsByCategory } from "@/utils/productsApis";
 import SingleCategory from "./SingleCategory";
-const CategoryProduct = async ({ params }) => {
+const CategoryProductPage = async ({ params }) => {
   const products = await getProductsByCategory(params.id);
   // console.log(products);
 
@@ -20,4 +20,4 @@ const CategoryProduct = async ({ params }) => {
   );
 };
 
-export default CategoryProduct;
+export default CategoryProductPage;
