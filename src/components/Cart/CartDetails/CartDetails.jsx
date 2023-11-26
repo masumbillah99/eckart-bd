@@ -9,7 +9,6 @@ const CartDetails = ({ products }) => {
   const [cartItems, setCartItems] = useState([]);
   const [cartItemsData, setCartItemsData] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  //   console.log(products);
 
   useEffect(() => {
     const storedCartItems =
@@ -18,18 +17,13 @@ const CartDetails = ({ products }) => {
   }, []);
 
   useEffect(() => {
-    const cartItemsId = cartItems.map((cartItem) => cartItem._id);
-    const cartItemsQuantity = cartItems.map((cartItem) => cartItem.quantity);
     const addedCartItems = [];
     let subTotalPrice = 0;
-
-    for (let i = 0; i < cartItemsId.length; i++) {
-      const id = cartItemsId[i];
-      const quantity = cartItemsQuantity[i];
-      const cartItem = products.find((item) => item._id === id);
-      if (cartItem) {
-        addedCartItems.push(cartItem);
-        subTotalPrice += parseFloat(cartItem.price) * quantity;
+    for (const carItem of cartItems) {
+      const product = products.find((item) => item._id === carItem._id);
+      if (product) {
+        subTotalPrice += parseFloat(product.price) * carItem.quantity;
+        addedCartItems.push(product);
       } else {
         console.log("product not found");
       }
@@ -37,9 +31,24 @@ const CartDetails = ({ products }) => {
 
     setTotalPrice(subTotalPrice);
     setCartItemsData(addedCartItems);
+
+    // const cartItemsId = cartItems.map((cartItem) => cartItem._id);
+    // const cartItemsQuantity = cartItems.map((cartItem) => cartItem.quantity);
+    // for (let i = 0; i < cartItemsId.length; i++) {
+    //   const id = cartItemsId[i];
+    //   const quantity = cartItemsQuantity[i];
+    //   const product = products.find((item) => item._id === id);
+    //   if (product) {
+    //     addedCartItems.push(product);
+    //     subTotalPrice += parseFloat(product.price) * quantity;
+    //   } else {
+    //     console.log("product not found");
+    //   }
+    // }
+    // setCartItems(storedCartItems);
   }, [cartItems, products]);
 
-  console.log(totalPrice);
+  // console.log(totalPrice);
 
   const increaseAmount = (price) => {
     setTotalPrice(parseFloat(totalPrice + price));
@@ -53,6 +62,8 @@ const CartDetails = ({ products }) => {
     console.log(id);
   };
 
+  // console.log(totalPrice);
+
   return (
     <>
       <div className="p-5 bg-shadow-round">
@@ -60,7 +71,7 @@ const CartDetails = ({ products }) => {
           <label className="flex items-center gap-3">
             <input type="checkbox" className="checkbox checkbox-info" />
             <span className="label-text font-semibold">
-              Select All ({cartItems.length} items)
+              Select All ({cartItemsData.length} items)
             </span>
           </label>
           <p className="font-semibold text-lg">
@@ -74,9 +85,9 @@ const CartDetails = ({ products }) => {
         {cartItemsData?.map((itemsData) => (
           <CartTable
             key={itemsData._id}
+            totalPrice={totalPrice}
             setTotalPrice={setTotalPrice}
             itemsData={itemsData}
-            totalPrice={totalPrice}
             increaseAmount={increaseAmount}
             decreaseAmount={decreaseAmount}
             deleteItemHandler={deleteItemHandler}

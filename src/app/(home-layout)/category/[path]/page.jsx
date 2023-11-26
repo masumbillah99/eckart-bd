@@ -1,7 +1,7 @@
 import { getProductsByCategory } from "@/utils/productsApis";
 import SingleCategory from "./SingleCategory";
 const CategoryProductPage = async ({ params }) => {
-  const products = await getProductsByCategory(params.id);
+  const products = await getProductsByCategory(params.path);
   // console.log(products);
 
   return (
@@ -12,7 +12,7 @@ const CategoryProductPage = async ({ params }) => {
             <SingleCategory
               key={product._id}
               productData={product}
-              path={params.id}
+              path={params.path}
             />
           ))}
       </div>

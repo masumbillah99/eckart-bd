@@ -4,66 +4,89 @@ import { useEffect, useState } from "react";
 
 const CartTable = ({
   itemsData,
+  totalPrice,
   setTotalPrice,
   increaseAmount,
   decreaseAmount,
   deleteItemHandler,
 }) => {
   const { _id, images, product, company, price, stock } = itemsData;
-  const [cartItems, setCartItems] = useState([]);
-  const [quantity, setQuantity] = useState([]);
+  const [cartItemsData, setCartItemsData] = useState([]);
+  const [quantity, setQuantity] = useState(1);
 
-  const totalPrice = parseFloat(price);
-  console.log(totalPrice);
+  const finalPrice = parseFloat(price);
+  // console.log(finalPrice);
 
   useEffect(() => {
     const storedCartItems =
       JSON.parse(localStorage.getItem("product-cart")) || [];
     const storedCartItem = storedCartItems.find((item) => item._id === _id);
-    setCartItems(storedCartItems);
+
+    setCartItemsData(storedCartItems);
 
     if (storedCartItem) {
       setQuantity(storedCartItem.quantity);
-      const productPrice = parseFloat(storedCartItem.quantity * totalPrice);
+      const productPrice = parseFloat(storedCartItem.quantity * finalPrice);
       setTotalPrice(productPrice);
     }
-  }, [_id, totalPrice, setTotalPrice]);
+  }, [_id, finalPrice, setTotalPrice]);
 
   const handleIncrease = (_id) => {
-    const index = cartItems.findIndex((i) => i._id === _id);
-    // const a = cartItems[index];
+    const updatedCartItems = cartItemsData.map((item) =>
+      item._id === _id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    localStorage.setItem("product-cart", JSON.stringify(updatedCartItems));
+    // console.log(updatedCartItems);
+    setCartItemsData(updatedCartItems);
+    setQuantity((prevQuantity) => parseFloat(prevQuantity + 1));
+    setTotalPrice((prevTotal) => prevTotal + finalPrice);
+    increaseAmount(finalPrice);
 
-    if (index !== -1) {
-      cartItems[index].quantity += 1;
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      const updatedQuantity = quantity + 1;
-      setQuantity(updatedQuantity);
-      console.log(totalPrice);
-      const total = parseFloat(updatedQuantity * totalPrice);
-      setTotalPrice(total);
-      increaseAmount(total);
-    } else {
-      console.log("product not found");
-    }
+    // const index = cartItems.findIndex((i) => i._id === _id);
+    // // const a = cartItems[index];
+
+    // if (index !== -1) {
+    //   cartItems[index].quantity += 1;
+    //   localStorage.setItem("product-cart", JSON.stringify(cartItems));
+    //   const updatedQuantity = quantity + 1;
+    //   setQuantity(updatedQuantity);
+    //   const total = parseFloat(updatedQuantity * finalPrice);
+    //   setTotalPrice(total);
+    //   increaseAmount(finalPrice);
+    //   console.log(finalPrice, totalPrice);
+    // } else {
+    //   console.log("product not found");
+    // }
   };
+
+  // console.log(finalPrice, totalPrice);
 
   const handleDecrease = (_id) => {
     if (quantity === 1) return;
+    const updatedCartItems = cartItemsData.map((item) =>
+      item._id === _id ? { ...item, quantity: item.quantity - 1 } : item
+    );
+    localStorage.setItem("product-cart", JSON.stringify(updatedCartItems));
+    setCartItemsData(updatedCartItems);
+    setQuantity((prevQuantity) => prevQuantity - 1);
+    setTotalPrice((prevTotal) => prevTotal - finalPrice);
 
-    const index = cartItems.findIndex((i) => i._id === _id);
-    if (index !== -1) {
-      cartItems[index].quantity -= 1;
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      const updatedQuantity = quantity - 1;
-      setQuantity(updatedQuantity);
+    // const index = cartItems.findIndex((i) => i._id === _id);
+    // if (index !== -1) {
+    //   cartItems[index].quantity -= 1;
+    //   localStorage.setItem("product-cart", JSON.stringify(cartItems));
+    //   const updatedQuantity = quantity - 1;
+    //   setQuantity(updatedQuantity);
 
-      const total = parseFloat(updatedQuantity * totalPrice);
-      setTotalPrice(total);
-      decreaseAmount(total);
-    } else {
-      console.log("product not found");
-    }
+    //   const total = parseFloat(updatedQuantity * finalPrice);
+    //   setTotalPrice(total);
+    decreaseAmount(finalPrice);
+    // } else {
+    //   console.log("product not found");
+    // }
   };
+
+  // console.log(quantity);
 
   return (
     <>
