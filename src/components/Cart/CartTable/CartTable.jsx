@@ -1,20 +1,62 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MdDelete, MdFavoriteBorder } from "react-icons/md";
+import { HiArrowSmallLeft, HiArrowSmallRight } from "react-icons/hi2";
+import Link from "next/link";
 
 const CartTable = ({
   cartData,
-  quantity,
-  increaseQuantity,
+  subtotal,
+  setSubTotal,
+  countTotalAmount,
+  minusTotalAmount,
   deleteItemHandler,
 }) => {
-  // console.log(cartData);
   const { _id, images, product, company, price, stock } = cartData;
+  const [quantity, setQuantity] = useState(1);
+  // console.log(images);
+
+  const increaseQuantity = (id) => {
+    const storedItems = JSON.parse(localStorage.getItem("product-cart")) || [];
+    const index = storedItems.findIndex((item) => item._id === id);
+    if (index !== -1) {
+      storedItems[index].quantity += 1;
+      const updatedQty = quantity + 1;
+      setQuantity(updatedQty);
+      const updatedSubTotal = parseFloat(price) * updatedQty;
+      setSubTotal(updatedSubTotal);
+      countTotalAmount(price);
+    }
+
+    // const filterItem = storedItems.find((item) => item._id === id);
+    // if (filterItem) {
+    //   const updatedQty = quantity + 1;
+    //   const updatedSubTotal = parseFloat(price) * updatedQty;
+    //   setQuantity(updatedQty);
+    //   console.log(updatedSubTotal);
+    //   setSubTotal(updatedSubTotal);
+    //   countTotalAmount(updatedSubTotal);
+    // }
+  };
+
+  const decreaseQuantity = (id) => {
+    if (quantity === 1) return;
+    const storedItems = JSON.parse(localStorage.getItem("product-cart")) || [];
+    const index = storedItems.findIndex((item) => item._id === id);
+    if (index !== -1) {
+      storedItems[index].quantity -= 1;
+      const updatedQty = quantity - 1;
+      setQuantity(updatedQty);
+      const updatedSubTotal = parseFloat(price) * updatedQty;
+      setSubTotal(updatedSubTotal);
+      minusTotalAmount(price);
+    }
+  };
 
   return (
-    <>
+    <div className="bg-shadow-round my-5">
       <div className="overflow-x-auto">
         <table className="table">
           <tbody>
@@ -50,7 +92,7 @@ const CartTable = ({
               </td>
               <td className="lg:absolute right-44 top-10 font-semibold">
                 <span
-                  // onClick={() => handleDecrease(_id)}
+                  onClick={() => decreaseQuantity(_id)}
                   className="border bg-[#F0F0F0] px-3 py-2 cursor-pointer"
                 >
                   -
@@ -72,7 +114,35 @@ const CartTable = ({
           </tbody>
         </table>
       </div>
-    </>
+
+      {/* place order */}
+      <div className="bg-shadow-round my-5 p-5 flex flex-col items-end gap-3">
+        <p>Apply Promo Code or Voucher Code on the Shipping Page</p>
+        <p className="text-red-500">Please select one or more products</p>
+        <div className="flex items-center gap-7">
+          <Link
+            href={`/`}
+            className={`flex items-center justify-end gap-2 bg-gradient-to-r from-indigo-400 to-indigo-500 hover:bg-orange-500 text-white text-right text-lg font-bold px-10 py-2 rounded-md`}
+          >
+            <HiArrowSmallLeft />
+            <span>Order More</span>
+          </Link>
+          <Link
+            href={{
+              pathname: `/cart/shipping`,
+              query: {
+                productId: _id,
+                total: subtotal,
+              },
+            }}
+            className={`flex items-center justify-end gap-2 bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-orange-500 text-white text-right text-lg font-bold px-10 py-2 rounded-md`}
+          >
+            <span>Place Order</span>
+            <HiArrowSmallRight />
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 };
 
