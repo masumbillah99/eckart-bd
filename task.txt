@@ -14,3 +14,90 @@
     2. wish list
     3. settings page
     4.
+
+const finalPrice = parseFloat(price);
+  // console.log(finalPrice);
+
+  useEffect(() => {
+    const storedCartItems =
+      JSON.parse(localStorage.getItem("product-cart")) || [];
+    const storedCartItem = storedCartItems.find((item) => item._id === _id);
+
+    setCartItemsData(storedCartItems);
+
+    if (storedCartItem) {
+      setQuantity(storedCartItem.quantity);
+      const productPrice = parseFloat(storedCartItem.quantity * finalPrice);
+      setTotalPrice(productPrice);
+    }
+  }, [_id, finalPrice, setTotalPrice]);
+
+  const handleIncrease = (_id) => {
+    const updatedCartItems = cartItemsData.map((item) =>
+      item._id === _id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    localStorage.setItem("product-cart", JSON.stringify(updatedCartItems));
+    // console.log(updatedCartItems);
+    setCartItemsData(updatedCartItems);
+    setQuantity((prevQuantity) => parseFloat(prevQuantity + 1));
+    setTotalPrice((prevTotal) => prevTotal + finalPrice);
+    increaseAmount(finalPrice);
+
+    // const index = cartItems.findIndex((i) => i._id === _id);
+    // // const a = cartItems[index];
+
+    // if (index !== -1) {
+    //   cartItems[index].quantity += 1;
+    //   localStorage.setItem("product-cart", JSON.stringify(cartItems));
+    //   const updatedQuantity = quantity + 1;
+    //   setQuantity(updatedQuantity);
+    //   const total = parseFloat(updatedQuantity * finalPrice);
+    //   setTotalPrice(total);
+    //   increaseAmount(finalPrice);
+    //   console.log(finalPrice, totalPrice);
+    // } else {
+    //   console.log("product not found");
+    // }
+  };
+
+  // console.log(finalPrice, totalPrice);
+
+  const handleDecrease = (_id) => {
+    if (quantity === 1) return;
+    const updatedCartItems = cartItemsData.map((item) =>
+      item._id === _id ? { ...item, quantity: item.quantity - 1 } : item
+    );
+    localStorage.setItem("product-cart", JSON.stringify(updatedCartItems));
+    setCartItemsData(updatedCartItems);
+    setQuantity((prevQuantity) => prevQuantity - 1);
+    setTotalPrice((prevTotal) => prevTotal - finalPrice);
+
+    // const index = cartItems.findIndex((i) => i._id === _id);
+    // if (index !== -1) {
+    //   cartItems[index].quantity -= 1;
+    //   localStorage.setItem("product-cart", JSON.stringify(cartItems));
+    //   const updatedQuantity = quantity - 1;
+    //   setQuantity(updatedQuantity);
+
+    //   const total = parseFloat(updatedQuantity * finalPrice);
+    //   setTotalPrice(total);
+    decreaseAmount(finalPrice);
+    // } else {
+    //   console.log("product not found");
+    // }
+  };
+
+  // console.log(quantity);
+
+
+  
+  // const saveCartInLocalStore = (myCart) => {
+  //   localStorage.setItem("product-cart", JSON.stringify(myCart));
+  //   let subt = 0;
+  //   let keys = Object.keys(myCart);
+  //   const getPrice = products?.map((item) => item._id === myCart[_id]);
+  //   for (let i = 0; i < keys.length; i++) {
+  //     subt = getPrice.price * myCart[keys[i]].qty;
+  //   }
+  //   setSubTotal(subt);
+  // };

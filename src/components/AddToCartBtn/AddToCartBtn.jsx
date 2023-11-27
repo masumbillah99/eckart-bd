@@ -12,6 +12,7 @@ const AddToCartBtn = ({ _id, textSize, padding }) => {
     } else {
       const newItem = { _id: id, quantity: 1 };
       const updatedCartItems = [...cartItems, newItem];
+      // console.log(updatedCartItems)
       localStorage.setItem("product-cart", JSON.stringify(updatedCartItems));
       toast.success("Product added in cart");
     }

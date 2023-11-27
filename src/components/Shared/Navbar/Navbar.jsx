@@ -4,7 +4,7 @@ import NavLink from "@/components/NavLink";
 import useTheme from "@/hooks/useTheme";
 import { afterLoginNavLinks, beforeLoginNavLinks } from "@/data/navData";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
 import useAuth from "@/hooks/useAuth";
@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
-  const cart = 1;
+  const [cartProduct, setCartProduct] = useState([]);
   const { user, role, logOutUser } = useAuth();
   const { uid, displayName, photoURL } = user || {};
   const { theme, toggleTheme } = useTheme();
@@ -20,6 +20,12 @@ const Navbar = () => {
   const { replace } = useRouter();
   const pathname = usePathname();
   const navLinks = user ? afterLoginNavLinks : beforeLoginNavLinks;
+
+  useEffect(() => {
+    const storedCartItems =
+      JSON.parse(localStorage.getItem("product-cart")) || [];
+    setCartProduct(storedCartItems);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -38,6 +44,8 @@ const Navbar = () => {
   };
 
   // console.log(role);
+
+  // console.log(cartProduct);
 
   return (
     <section className="shadow-lg dark:bg-slate-900">
@@ -94,7 +102,7 @@ const Navbar = () => {
                   />
                 </svg>
                 <span className="badge badge-sm indicator-item bg-primary text-white dark:text-gray-300">
-                  {cart}
+                  {cartProduct.length}
                 </span>
               </div>
             </label>
