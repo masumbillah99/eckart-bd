@@ -23,6 +23,7 @@ const CartTable = ({
     const index = storedItems.findIndex((item) => item._id === id);
     if (index !== -1) {
       storedItems[index].quantity += 1;
+      localStorage.setItem("product-cart", JSON.stringify(storedItems));
       const updatedQty = quantity + 1;
       setQuantity(updatedQty);
       const updatedSubTotal = parseFloat(price) * updatedQty;
@@ -47,6 +48,7 @@ const CartTable = ({
     const index = storedItems.findIndex((item) => item._id === id);
     if (index !== -1) {
       storedItems[index].quantity -= 1;
+      localStorage.setItem("product-cart", JSON.stringify(storedItems));
       const updatedQty = quantity - 1;
       setQuantity(updatedQty);
       const updatedSubTotal = parseFloat(price) * updatedQty;
@@ -116,7 +118,7 @@ const CartTable = ({
       </div>
 
       {/* place order */}
-      <div className="bg-shadow-round my-5 p-5 flex flex-col items-end gap-3">
+      {/* <div className="bg-shadow-round my-5 p-5 flex flex-col items-end gap-3">
         <p>Apply Promo Code or Voucher Code on the Shipping Page</p>
         <p className="text-red-500">Please select one or more products</p>
         <div className="flex items-center gap-7">
@@ -141,7 +143,7 @@ const CartTable = ({
             <HiArrowSmallRight />
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

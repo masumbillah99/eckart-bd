@@ -109,7 +109,7 @@ const Navbar = () => {
           </Link>
 
           {/* profile image */}
-          {uid && (
+          {uid && user && (
             <div className="dropdown dropdown-end">
               <label
                 tabIndex={0}

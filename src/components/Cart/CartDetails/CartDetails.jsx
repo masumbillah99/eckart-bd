@@ -8,6 +8,7 @@ import Link from "next/link";
 
 const CartDetails = ({ products }) => {
   const { user } = useAuth();
+  const [carts, setCarts] = useState([]);
   const [cartItemsData, setCartItemsData] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [subtotal, setSubTotal] = useState(0);
@@ -27,6 +28,7 @@ const CartDetails = ({ products }) => {
       }
     }
 
+    setCarts(storedProducts);
     setSubTotal(subTotalPrice);
     setCartItemsData(addedCartItems);
   }, [products]);
@@ -51,7 +53,7 @@ const CartDetails = ({ products }) => {
   };
 
   return (
-    <section className="max-w-screen-xl mx-auto flex flex-col px-2 md:px-5 xl:px-0 gap-5">
+    <section className="max-w-screen-xl mx-auto flex flex-col px-2 xl:px-0 gap-5">
       <div className="p-5 bg-shadow-round">
         <div className="flex justify-between items-center gap-3">
           <label className="flex items-center gap-3">
@@ -82,7 +84,7 @@ const CartDetails = ({ products }) => {
           ))}
       </div>
 
-      {/* <div className="bg-shadow-round my-5 p-5 flex flex-col items-end gap-3">
+      <div className="bg-shadow-round my-5 p-5 flex flex-col items-end gap-3">
         <p>Apply Promo Code or Voucher Code on the Shipping Page</p>
         <p className="text-red-500">Please select one or more products</p>
         <div className="flex items-center gap-7">
@@ -97,8 +99,8 @@ const CartDetails = ({ products }) => {
             href={{
               pathname: `/cart/shipping`,
               query: {
-                productId: "",
-                total: subtotal,
+                totalPrice: subtotal,
+                products: JSON.stringify(carts),
               },
             }}
             className={`flex items-center justify-end gap-2 bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-orange-500 text-white text-right text-lg font-bold px-10 py-2 rounded-md`}
@@ -107,7 +109,7 @@ const CartDetails = ({ products }) => {
             <HiArrowSmallRight />
           </Link>
         </div>
-      </div> */}
+      </div>
     </section>
   );
 };
