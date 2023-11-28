@@ -21,12 +21,6 @@ const Navbar = () => {
   const pathname = usePathname();
   const navLinks = user ? afterLoginNavLinks : beforeLoginNavLinks;
 
-  useEffect(() => {
-    const storedCartItems =
-      JSON.parse(localStorage.getItem("product-cart")) || [];
-    setCartProduct(storedCartItems);
-  }, []);
-
   const handleLogout = async () => {
     try {
       await logOutUser();
@@ -43,9 +37,10 @@ const Navbar = () => {
     }
   };
 
-  // console.log(role);
-
-  // console.log(cartProduct);
+  useEffect(() => {
+    const storedItems = JSON.parse(localStorage.getItem("product-cart")) || [];
+    setCartProduct(storedItems);
+  }, []);
 
   return (
     <section className="shadow-lg dark:bg-slate-900">
@@ -102,7 +97,7 @@ const Navbar = () => {
                   />
                 </svg>
                 <span className="badge badge-sm indicator-item bg-primary text-white dark:text-gray-300">
-                  {cartProduct.length}
+                  {cartProduct?.length}
                 </span>
               </div>
             </label>

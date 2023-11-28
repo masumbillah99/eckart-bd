@@ -11,7 +11,10 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.17",
     "@mui/material": "^5.14.18",
+    "@stripe/react-stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^2.2.0",
     "daisyui": "^3.9.4",
     "firebase": "^10.6.0",
     "jose": "^5.1.0",

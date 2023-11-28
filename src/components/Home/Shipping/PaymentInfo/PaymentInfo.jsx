@@ -5,6 +5,7 @@ import Link from "next/link";
 import { paymentMethodData } from "@/data/paymentMethodData";
 import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
+import StripeModal from "@/components/Modal/StripeModal/StripeModal";
 
 const PaymentInfo = ({ searchParams }) => {
   const { user } = useAuth();
@@ -13,13 +14,22 @@ const PaymentInfo = ({ searchParams }) => {
   const [address, setAddress] = useState("");
   const [currency, setCurrency] = useState("BDT");
   const [selectedOption, setSelectedOption] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
 
-  const confirmOrder = () => {
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const sslConfirmOrder = () => {
     const productIds = cartProducts?.map((product) => product._id);
 
     const orderData = {
@@ -45,6 +55,33 @@ const PaymentInfo = ({ searchParams }) => {
         window.location.replace(result.url);
       });
   };
+
+  // const visaConfirmOrder = () => {
+  //   const productIds = cartProducts?.map((product) => product._id);
+
+  //   const orderData = {
+  //     productIds: productIds,
+  //     totalPrice,
+  //     quantity,
+  //     currency,
+  //     orderStatus: "pending",
+  //     consumerInfo: {
+  //       name: user?.displayName,
+  //       email: user?.email,
+  //       address: address,
+  //     },
+  //   };
+
+  //   fetch(`${process.env.NEXT_PUBLIC_SERVER}/payment-request`, {
+  //     method: "POST",
+  //     headers: { "content-type": "application/json" },
+  //     body: JSON.stringify(orderData),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       window.location.replace(result.url);
+  //     });
+  // };
 
   return (
     <>
@@ -92,7 +129,7 @@ const PaymentInfo = ({ searchParams }) => {
           </span>
         </h3>
         <hr className="bg-black border-dotted my-3" />
-        <div className="grid grid-cols-2 justify-between items-center gap-5 mt-5">
+        <div className="grid md:grid-cols-2 justify-between items-center gap-5 mt-5">
           {paymentMethodData &&
             paymentMethodData.map(({ logo, name }) => (
               <div
@@ -127,20 +164,24 @@ const PaymentInfo = ({ searchParams }) => {
         <hr className="bg-black border-dotted my-10" />
 
         <div className="mb-5 text-right">
-          {/* <Link
-            href={{
-              pathname: `/cart/shipping/payment`,
-            }}
-          > */}
           <button
             className={`bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-orange-500 text-white text-right text-lg font-bold px-10 py-3 rounded-md disabled:cursor-default`}
-            onClick={confirmOrder}
+            onClick={sslConfirmOrder}
             disabled={selectedOption === null}
           >
             Confirm Order
           </button>
-          {/* </Link> */}
         </div>
+
+        {/* <StripeModal
+          isOpen={isOpen}
+          openModal={openModal}
+          closeModal={closeModal}
+          cartProducts={cartProducts}
+          totalPrice={totalPrice}
+          currency={currency}
+          address={address}
+        /> */}
       </div>
     </>
   );
