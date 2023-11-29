@@ -28,7 +28,7 @@ const LoginForm = () => {
     try {
       const { user } = await signInUser(email, password);
       await createJWT({ email: user?.email });
-      toast.success("User created successfully");
+      toast.success("User login successfully");
       replace(from);
     } catch (error) {
       setLoading(false);

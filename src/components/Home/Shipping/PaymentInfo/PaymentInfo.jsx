@@ -89,64 +89,90 @@ const PaymentInfo = ({ searchParams }) => {
       <div className="bg-shadow-round p-5 mb-10">
         <h3 className="text-lg font-semibold">User Information</h3>
         <hr className="bg-black border-dotted my-3" />
-        <p>Name: {user?.displayName}</p>
-        <p className="my-2">Email: {user?.email}</p>
-        <div className="form-control flex-row items-center">
-          <label htmlFor="address">Your Address: </label>
-          <input
-            type="name"
-            id="address"
-            className="w-1/3 ml-2 input input-bordered focus:outline-none"
-            placeholder="enter your address"
-            onBlur={(e) => setAddress(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-control flex-row items-center my-2">
-          <label htmlFor="">Select Currency: </label>
-          <select
-            name="currency"
-            className="select select-info w-full max-w-xs ml-2 focus:outline-none"
-            onBlur={(e) => setCurrency(e.target.value)}
-            required
-          >
-            <option value={"BDT"}>BDT</option>
-            <option value={"USD"}>USD</option>
-          </select>
+
+        <div className="md:mx-5">
+          <div className="flex items-center gap-10">
+            <label htmlFor="name" className="font-semibold">
+              Name:{" "}
+            </label>
+            <input
+              type="text"
+              className="w-3/4 input input-info input-bordered focus:outline-none"
+              value={user?.displayName}
+              readOnly
+            />
+          </div>
+
+          <div className="flex items-center gap-10 my-3">
+            <label htmlFor="email" className="font-semibold">
+              Email:{" "}
+            </label>
+            <input
+              type="text"
+              className="w-3/4 input input-info input-bordered focus:outline-none"
+              value={user?.email}
+              readOnly
+            />
+          </div>
+
+          <div className="flex items-center gap-5">
+            <label htmlFor="address" className="font-semibold">
+              Address:{" "}
+            </label>
+            <input
+              type="text"
+              className="w-3/4 input input-info input-bordered focus:outline-none"
+              placeholder="enter your address"
+              onBlur={(e) => setAddress(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="flex items-center my-3">
+            <label htmlFor="currency" className="font-semibold">
+              Select Currency:{" "}
+            </label>
+            <select
+              name="currency"
+              className="select select-info w-3/4  ml-2 focus:outline-none"
+              onBlur={(e) => setCurrency(e.target.value)}
+              required
+            >
+              <option value={"BDT"}>BDT</option>
+              <option value={"USD"}>USD</option>
+            </select>
+          </div>
         </div>
       </div>
 
       {/* payment methods */}
       <div className="p-5 bg-shadow-round">
         <h3 className="text-lg font-semibold text-gray-600">
-          Payment Method{" "}
+          Payment Methods{" "}
           <span
-            className={`text-sm font-normal ${
-              selectedOption === null ? "text-red-500" : "text-black"
-            }`}
+            className={`text-sm font-normal`}
+            // ${selectedOption === null ? "text-red-500" : "text-black"}
           >
-            (Please select only one! payment method)
+            (All payment methods)
+            {/* (Please select only one! payment method) */}
           </span>
         </h3>
         <hr className="bg-black border-dotted my-3" />
-        <div className="grid md:grid-cols-2 justify-between items-center gap-5 mt-5">
+        <div className="grid md:grid-cols-2 lg:justify-between items-center gap-5 mt-5">
           {paymentMethodData &&
             paymentMethodData.map(({ logo, name }) => (
               <div
                 key={name}
-                className={`flex items-center gap-3 bg-base-200 py-2 px-5 ${
-                  selectedOption === name
-                    ? "border border-orange-500"
-                    : "border-none"
-                } transition cursor-pointer`}
-                onClick={() => handleOptionClick(name)}
+                className={`bg-base-200 py-2 px-5 transition`}
+                // ${selectedOption === name ? "border border-orange-500": "border-none"}
+                // onClick={() => handleOptionClick(name)}
               >
-                <input
+                {/* <input
                   type="radio"
                   className="w-5 h-5 cursor-pointer"
                   checked={selectedOption === name}
                   readOnly
-                />
+                /> */}
                 <div>
                   <Image
                     className="w-20 h-10"
@@ -167,7 +193,7 @@ const PaymentInfo = ({ searchParams }) => {
           <button
             className={`bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-orange-500 text-white text-right text-lg font-bold px-10 py-3 rounded-md disabled:cursor-default`}
             onClick={sslConfirmOrder}
-            disabled={selectedOption === null}
+            // disabled={selectedOption === null}
           >
             Confirm Order
           </button>

@@ -3,20 +3,18 @@
 import Image from "next/image";
 import { useState } from "react";
 import { MdDelete, MdFavoriteBorder } from "react-icons/md";
-import { HiArrowSmallLeft, HiArrowSmallRight } from "react-icons/hi2";
-import Link from "next/link";
 
 const CartTable = ({
   cartData,
-  subtotal,
   setSubTotal,
   countTotalAmount,
   minusTotalAmount,
   deleteItemHandler,
+  select,
+  handleSelect,
 }) => {
   const { _id, images, product, company, price, stock } = cartData;
   const [quantity, setQuantity] = useState(1);
-  // console.log(images);
 
   const increaseQuantity = (id) => {
     const storedItems = JSON.parse(localStorage.getItem("product-cart")) || [];
@@ -65,7 +63,12 @@ const CartTable = ({
             <tr className="">
               <td className="w-10">
                 <label>
-                  <input type="checkbox" className="w-5 h-5 cursor-pointer" />
+                  <input
+                    type="checkbox"
+                    className="w-5 h-5 cursor-pointer"
+                    onClick={handleSelect}
+                    checked={select}
+                  />
                 </label>
               </td>
               <td>
@@ -116,34 +119,6 @@ const CartTable = ({
           </tbody>
         </table>
       </div>
-
-      {/* place order */}
-      {/* <div className="bg-shadow-round my-5 p-5 flex flex-col items-end gap-3">
-        <p>Apply Promo Code or Voucher Code on the Shipping Page</p>
-        <p className="text-red-500">Please select one or more products</p>
-        <div className="flex items-center gap-7">
-          <Link
-            href={`/`}
-            className={`flex items-center justify-end gap-2 bg-gradient-to-r from-indigo-400 to-indigo-500 hover:bg-orange-500 text-white text-right text-lg font-bold px-10 py-2 rounded-md`}
-          >
-            <HiArrowSmallLeft />
-            <span>Order More</span>
-          </Link>
-          <Link
-            href={{
-              pathname: `/cart/shipping`,
-              query: {
-                productId: _id,
-                total: subtotal,
-              },
-            }}
-            className={`flex items-center justify-end gap-2 bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-orange-500 text-white text-right text-lg font-bold px-10 py-2 rounded-md`}
-          >
-            <span>Place Order</span>
-            <HiArrowSmallRight />
-          </Link>
-        </div>
-      </div> */}
     </div>
   );
 };

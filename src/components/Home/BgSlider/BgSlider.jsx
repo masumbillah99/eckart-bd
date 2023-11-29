@@ -11,19 +11,19 @@ const sliderImages = [
   {
     id: 1,
     bg: slider1,
-    title: "হাট-বাজার.কম",
+    title: "ECKART-BD.COM",
     desc: "খাঁটি পণ্যের এক বিশ্বস্ত প্রতিষ্ঠান",
   },
   {
     id: 2,
     bg: slider3,
-    title: "হাট-বাজার.কম",
+    title: "ECKART-BD.COM",
     desc: "খাঁটি পণ্যের এক বিশ্বস্ত প্রতিষ্ঠান",
   },
   {
     id: 3,
     bg: slider2,
-    title: "হাট-বাজার.কম",
+    title: "ECKART-BD.COM",
     desc: "খাঁটি পণ্যের এক বিশ্বস্ত প্রতিষ্ঠান",
   },
 ];

@@ -1,7 +1,7 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const productsLoading = () => {
+const ProductsLoading = () => {
   return (
     <SkeletonTheme baseColor="#2a303c" highlightColor="#5c5c5c">
       <div className="max-w-screen-xl mx-auto mt-10">
@@ -31,4 +31,4 @@ const productsLoading = () => {
   );
 };
 
-export default productsLoading;
+export default ProductsLoading;

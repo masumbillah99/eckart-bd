@@ -1,10 +1,10 @@
-import Loading from "@/app/loading";
-import React from "react";
+// import Loading from "@/app/loading";
+import ProductsLoading from "../category/loading";
 
 const CartLoading = () => {
   return (
     <>
-      <Loading />
+      <ProductsLoading />
     </>
   );
 };

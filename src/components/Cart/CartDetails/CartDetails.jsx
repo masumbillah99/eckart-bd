@@ -12,6 +12,7 @@ const CartDetails = ({ products }) => {
   const [cartItemsData, setCartItemsData] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [subtotal, setSubTotal] = useState(0);
+  const [select, setSlect] = useState(true);
 
   useEffect(() => {
     const storedProducts =
@@ -52,6 +53,10 @@ const CartDetails = ({ products }) => {
     setCartItemsData(filterItem);
   };
 
+  const handleSelect = () => {
+    setSlect(!select);
+  };
+
   return (
     <section className="max-w-screen-xl mx-auto flex flex-col px-2 xl:px-0 gap-5">
       <div className="p-5 bg-shadow-round">
@@ -80,6 +85,8 @@ const CartDetails = ({ products }) => {
               countTotalAmount={countTotalAmount}
               minusTotalAmount={minusTotalAmount}
               deleteItemHandler={deleteItemHandler}
+              handleSelect={handleSelect}
+              select={select}
             />
           ))}
       </div>
@@ -103,10 +110,14 @@ const CartDetails = ({ products }) => {
                 products: JSON.stringify(carts),
               },
             }}
-            className={`flex items-center justify-end gap-2 bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-orange-500 text-white text-right text-lg font-bold px-10 py-2 rounded-md`}
           >
-            <span>Place Order</span>
-            <HiArrowSmallRight />
+            <button
+              className={`flex items-center justify-end gap-2 bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-orange-500 text-white text-right text-lg font-bold px-10 py-2 rounded-md disabled:bg-gradient-to-r disabled:from-orange-200 disabled:to-orange-300 disabled:cursor-default transition`}
+              disabled={select === false}
+            >
+              <span>Place Order</span>
+              <HiArrowSmallRight />
+            </button>
           </Link>
         </div>
       </div>

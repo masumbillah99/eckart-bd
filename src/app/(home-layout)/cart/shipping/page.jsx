@@ -8,7 +8,7 @@ const ShippingPage = async ({ searchParams }) => {
           <PaymentInfo searchParams={searchParams} />
         </div>
 
-        <div className="lg:w-1/4 py-10 px-7 font-semibold flex flex-col gap-5 bg-shadow-round">
+        <div className="lg:w-1/4 h-96 py-10 px-7 font-semibold flex flex-col gap-5 bg-shadow-round">
           <h1 className="text-xl font-bold">Checkout Summary</h1>
           <hr className="border-dotted bg-black" />
           <p className="flex items-center justify-between gap-5">
