@@ -1,8 +1,8 @@
-import cod from "@/assets/payment/cod.png";
-import bkash from "@/assets/payment/bkash.png";
-import rocket from "@/assets/payment/rocket.png";
-import nagad from "@/assets/payment/nagad.png";
-import visa from "@/assets/payment/visa.png";
+// import cod from "@/assets/payment/cod.png";
+// import bkash from "@/assets/payment/bkash.png";
+// import rocket from "@/assets/payment/rocket.png";
+// import nagad from "@/assets/payment/nagad.png";
+// import visa from "@/assets/payment/visa.png";
 // import ssl from "@/assets/payment/ssl.png";
 
 export const paymentMethodData = [
