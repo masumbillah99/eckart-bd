@@ -7,9 +7,9 @@ import visa from "@/assets/payment/visa.png";
 
 export const paymentMethodData = [
   // { logo: ssl, name: "SSL Commerz" },
-  { logo: bkash, name: "bkash" },
-  { logo: cod, name: "cod" },
-  { logo: nagad, name: "nagad" },
-  { logo: visa, name: "visaCard" },
-  { logo: rocket, name: "rocket" },
+  { logo: "https://i.ibb.co/G3Fs5LS/bkash.png", name: "bkash" },
+  { logo: "https://i.ibb.co/3F71nzC/cod.png", name: "cod" },
+  { logo: "https://i.ibb.co/hMRQy6G/visa.png", name: "vissa" },
+  { logo: "https://i.ibb.co/FgsNzg4/rocket.png", name: "rocket" },
+  { logo: "https://i.ibb.co/WGphK6D/nagad.png", name: "nagad" },
 ];
