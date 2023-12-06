@@ -1,5 +1,6 @@
 import { getProductsByCategory } from "@/utils/productsApis";
 import SingleCategory from "./SingleCategory";
+
 const CategoryProductPage = async ({ params }) => {
   const products = await getProductsByCategory(params.path);
   // console.log(products);
