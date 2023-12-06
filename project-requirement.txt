@@ -1,4 +1,27 @@
-# hat-bazar project (next)
+# eckart-bd project (next)
+
+
+* add more products
+* implement add-to-cart system
+    1. without login save product in local-storage & match it with product and show it add-to-cart page
+    2. user can increase product quantity
+    3. if quantity increase so money will be increase
+* user can't buy without login
+* payment page
+    1. ssl commerze (bkash, nagad)
+    2. stripe payment with jwt 
+* user dashboard
+    *. overview page
+      * 3 box with his activity (add-to-cart, buy)
+      * a graph include his activity
+    * order list 
+    * wish list
+    * settings page
+* Navbar - update navbar & nested navbar 
+* home - add category based products (trending, best seller, popular etc.)
+* animation - swiper, wave, awesome animation
+* loading - 
+* UI design - beautiful ui layout 
 
 Home-page: 
 1. show data by category and then click on category products show data by category

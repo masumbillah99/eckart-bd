@@ -24,9 +24,18 @@ const featuresOptions = [
   { value: "awesome", label: "awesome" },
 ];
 
+const productOptions = [
+  { value: "trending", label: "Trending" },
+  { value: "popular", label: "popular" },
+  { value: "bestSeller", label: "Best Seller" },
+  { value: "hotDeals", label: "Hot Deals" },
+  { value: "justForYou", label: "Just For You" },
+];
+
 const AddProductForm = () => {
   const [categoryOption, setCategoryOption] = useState(null);
   const [featureOption, setFeatureOption] = useState(null);
+  const [productOption, setProductOption] = useState(null);
   const [images, setImages] = useState([]);
   const {
     register,
@@ -57,6 +66,7 @@ const AddProductForm = () => {
     event.preventDefault();
     data.category = categoryOption;
     data.features = featureOption;
+    data.popularity = productOption;
 
     const {
       title,
@@ -65,6 +75,7 @@ const AddProductForm = () => {
       origin_country,
       category,
       sub_category,
+      popularity,
       features,
       color,
       materials,
@@ -87,6 +98,7 @@ const AddProductForm = () => {
       company: { brand, origin_country },
       category,
       sub_category,
+      popularity,
       features,
       images: images,
       description,
@@ -209,6 +221,23 @@ const AddProductForm = () => {
                   placeholder="Write sub category"
                   name="sub_category"
                   {...register("sub_category")}
+                />
+              </div>
+
+              {/* trending / popular */}
+              <div className="my-2">
+                <label
+                  className="block text-black dark:text-gray-200 mb-1 font-semibold"
+                  htmlFor="popularity"
+                >
+                  Product Popularity
+                </label>
+                <CreatableSelect
+                  defaultValue={productOption}
+                  onChange={setProductOption}
+                  options={productOptions}
+                  isMulti
+                  required
                 />
               </div>
 

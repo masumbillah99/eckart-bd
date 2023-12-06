@@ -28,6 +28,7 @@ const Navbar = () => {
         method: "POST",
       });
       const data = await res.json();
+      localStorage.removeItem("product-cart");
       toast.success("User logout successfully");
       if (pathname.includes("/dashboard") || pathname.includes("/profile")) {
         replace("/");

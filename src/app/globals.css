@@ -6,3 +6,7 @@
 .bg-shadow-round {
   @apply bg-base-100 border shadow-lg rounded-lg;
 }
+
+.not-found {
+  @apply min-w-min min-h-screen flex flex-col place-items-center justify-center gap-10 m-0;
+}
