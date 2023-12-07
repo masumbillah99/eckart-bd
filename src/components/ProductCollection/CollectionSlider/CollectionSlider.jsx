@@ -8,7 +8,7 @@ import ProductCard from "../ProductCard/ProductCard";
 
 const CollectionSlider = ({ products }) => {
   return (
-    <div className="">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       <Swiper
         loop
         autoplay

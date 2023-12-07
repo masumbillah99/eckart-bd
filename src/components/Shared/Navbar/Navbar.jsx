@@ -21,6 +21,12 @@ const Navbar = () => {
   const pathname = usePathname();
   const navLinks = user ? afterLoginNavLinks : beforeLoginNavLinks;
 
+  useEffect(() => {
+    const storedProducts =
+      JSON.parse(localStorage.getItem("product-cart")) || [];
+    setCartProduct(storedProducts);
+  }, []);
+
   const handleLogout = async () => {
     try {
       await logOutUser();
@@ -37,11 +43,6 @@ const Navbar = () => {
       toast.error(error.message);
     }
   };
-
-  useEffect(() => {
-    const storedItems = JSON.parse(localStorage.getItem("product-cart")) || [];
-    setCartProduct(storedItems);
-  }, []);
 
   return (
     <section className="shadow-lg dark:bg-slate-900">

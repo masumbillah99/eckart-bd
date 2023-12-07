@@ -3,7 +3,7 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { toast } from "react-toastify";
 
-const AddToCartBtn = ({ _id, textSize, padding }) => {
+const AddToCartBtn = ({ _id, textSize, padding, isTrue }) => {
   const addToCart = (id) => {
     const cartItems = JSON.parse(localStorage.getItem("product-cart")) || [];
     const existItemIndex = cartItems.findIndex((item) => item._id === id);
@@ -19,12 +19,23 @@ const AddToCartBtn = ({ _id, textSize, padding }) => {
   };
 
   return (
-    <button
-      onClick={() => addToCart(_id)}
-      className={`flex items-center gap-2 bg-orange-400 hover:bg-orange-500 text-white ${textSize} ${padding} rounded-md`}
-    >
-      <FaShoppingCart /> <span>Add to Cart</span>
-    </button>
+    <>
+      {isTrue ? (
+        <button
+          onClick={() => addToCart(_id)}
+          className={`flex items-center justify-center gap-5 w-full text-white ${textSize} ${padding} rounded-md`}
+        >
+          <FaShoppingCart /> <span>Add to Cart</span>
+        </button>
+      ) : (
+        <button
+          onClick={() => addToCart(_id)}
+          className={`flex items-center gap-2 bg-orange-400 hover:bg-orange-500 text-white ${textSize} ${padding} rounded-md`}
+        >
+          <FaShoppingCart /> <span>Add to Cart</span>
+        </button>
+      )}
+    </>
   );
 };
 
