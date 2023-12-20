@@ -6,10 +6,11 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  updateProfile,
-  sendPasswordResetEmail,
-  GoogleAuthProvider,
   signInWithPopup,
+  GoogleAuthProvider,
+  updateProfile,
+  updatePassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import AuthContext from "@/contexts/AuthContext";
 import { getUserRoleFromDb } from "@/utils/usersApi";
@@ -22,9 +23,14 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cartProduct, setCartProduct] = useState([]);
 
   // set user role in state from db
   useEffect(() => {
+    const storedProducts =
+      JSON.parse(localStorage.getItem("product-cart")) || [];
+    setCartProduct(storedProducts);
+
     if (user) {
       getUserRoleFromDb(user?.email).then((data) => {
         setRole(data?.role);
@@ -56,13 +62,6 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  // update user data
-  const profileUpdate = async (updateUser = {}) => {
-    setLoading(true);
-    await updateProfile(auth.currentUser, updateUser);
-    setUser((prevUser) => ({ ...prevUser, ...updateUser }));
-  };
-
   // google sign in
   const googleLogin = () => {
     setLoading(true);
@@ -75,6 +74,18 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // update user data
+  const profileUpdate = async (updateUser = {}) => {
+    setLoading(true);
+    await updateProfile(auth.currentUser, updateUser);
+    setUser((prevUser) => ({ ...prevUser, ...updateUser }));
+  };
+
+  // update user password
+  const updateUserPassword = (newPassword) => {
+    return updatePassword(auth.currentUser, newPassword);
+  };
+
   // reset password
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
@@ -84,6 +95,7 @@ const AuthProvider = ({ children }) => {
     user,
     role,
     loading,
+    cartProduct,
     setRole,
     setLoading,
     createUser,
@@ -91,6 +103,7 @@ const AuthProvider = ({ children }) => {
     logOutUser,
     profileUpdate,
     googleLogin,
+    updateUserPassword,
     resetPassword,
   };
 

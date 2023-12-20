@@ -23,31 +23,31 @@ const SingleCategory = ({ productData, path }) => {
   return (
     <>
       {category?.value !== "electronics" && (
-        <Link href={`/category/${path}/${_id}`}>
-          <div className="card card-compact h-96 w-96 bg-base-100">
-            <figure
-              className={`border rounded-none overflow-hidden relative transition-all`}
-              onMouseEnter={mouseOver}
-              onMouseLeave={mouseLeave}
+        <div className="card card-compact h-96 w-96 bg-base-100">
+          <figure
+            className={`border rounded-none overflow-hidden relative transition-all`}
+            onMouseEnter={mouseOver}
+            onMouseLeave={mouseLeave}
+          >
+            <Image
+              src={images[0]}
+              width={300}
+              height={300}
+              className="max-h-[400px] hover:scale-110 transition-all"
+              alt=""
+            />
+            <span className="block absolute right-3 top-3 bg-black p-1 rounded-full">
+              <AddWishList _id={_id} />
+            </span>
+            <div
+              className={`absolute bottom-0 bg-black w-full ${
+                isTrue ? "block" : "hidden"
+              }`}
             >
-              <Image
-                src={images[0]}
-                width={300}
-                height={300}
-                className="max-h-[400px] hover:scale-110 transition-all"
-                alt=""
-              />
-              <span className="block absolute right-3 top-3 bg-black p-1 rounded-full">
-                <AddWishList />
-              </span>
-              <div
-                className={`absolute bottom-0 bg-black w-full ${
-                  isTrue ? "block" : "hidden"
-                }`}
-              >
-                <AddToCartBtn _id={_id} padding={"py-2 px-3"} isTrue={isTrue} />
-              </div>
-            </figure>
+              <AddToCartBtn _id={_id} padding={"py-2 px-3"} isTrue={isTrue} />
+            </div>
+          </figure>
+          <Link href={`/category/${path}/${_id}`}>
             <div className="mt-2">
               <h2 className="card-title text-base">{product.title}</h2>
               <div className="flex justify-between items-center">
@@ -57,8 +57,8 @@ const SingleCategory = ({ productData, path }) => {
                 <p>{rating || <FaStar className="text-orange-500" />}</p>
               </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+        </div>
       )}
 
       {category?.value === "electronics" && (

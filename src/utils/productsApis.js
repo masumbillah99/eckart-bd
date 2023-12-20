@@ -49,6 +49,18 @@ export const getProductDetailsFromDb = async (id) => {
   return data;
 };
 
+// my wish list products
+export const getMyWishList = async (email) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER}/my-wish-list?user_email=${email}`,
+    {
+      cache: "no-cache",
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+
 /** post data in db */
 // add product item in db
 export const addProductInDb = async (productData) => {
@@ -61,6 +73,23 @@ export const addProductInDb = async (productData) => {
   if (res.ok) {
     const data = await res.json();
     toast.success("Product add in db");
+    return data;
+  } else {
+    console.log("Error:", res.statusText);
+  }
+};
+
+// add wish list product
+export const addToWishList = async (productData) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/add-to-wishlist`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(productData),
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    toast.success("add in wishlist");
     return data;
   } else {
     console.log("Error:", res.statusText);

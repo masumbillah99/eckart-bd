@@ -12,8 +12,8 @@ import { toast } from "react-toastify";
 import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
-  const [cartProduct, setCartProduct] = useState([]);
-  const { user, role, logOutUser } = useAuth();
+  // const [cartProduct, setCartProduct] = useState([]);
+  const { user, role, cartProduct, logOutUser } = useAuth();
   const { uid, displayName, photoURL } = user || {};
   const { theme, toggleTheme } = useTheme();
   const [navToggle, setNavToggle] = useState(false);
@@ -21,11 +21,11 @@ const Navbar = () => {
   const pathname = usePathname();
   const navLinks = user ? afterLoginNavLinks : beforeLoginNavLinks;
 
-  useEffect(() => {
-    const storedProducts =
-      JSON.parse(localStorage.getItem("product-cart")) || [];
-    setCartProduct(storedProducts);
-  }, []);
+  // useEffect(() => {
+  //   const storedProducts =
+  //     JSON.parse(localStorage.getItem("product-cart")) || [];
+  //   setCartProduct(storedProducts);
+  // }, []);
 
   const handleLogout = async () => {
     try {

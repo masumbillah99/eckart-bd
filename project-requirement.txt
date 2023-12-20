@@ -5,7 +5,7 @@
 * implement add-to-cart system
     1. without login save product in local-storage & match it with product and show it add-to-cart page
     2. user can increase product quantity
-    3. if quantity increase so money will be increase
+    3. if quantity increase so price will be increase
 * user can't buy without login
 * payment page
     1. ssl commerze (bkash, nagad)

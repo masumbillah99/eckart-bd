@@ -9,6 +9,7 @@ const AddToCartBtn = ({ _id, textSize, padding, isTrue }) => {
     const existItemIndex = cartItems.findIndex((item) => item._id === id);
     if (existItemIndex !== -1) {
       toast("Already bookmarked! Go to Cart");
+      return;
     } else {
       const newItem = { _id: id, quantity: 1 };
       const updatedCartItems = [...cartItems, newItem];
